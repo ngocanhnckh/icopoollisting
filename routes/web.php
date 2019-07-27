@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('uploadimg');
 Route::get('/admin-login', ['uses'=>'dashboard@login'])->name('admin-login');
 Route::post('/admin-login',[
     'uses'=>'dashboard@postlogin'
@@ -47,7 +47,6 @@ Route::get('/dashboard/edit-ico/{id}',[
 Route::post('/dashboard/edit-ico/{id}',[
     'uses'=>'dashboard@posteditico'
 ]);
-Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('uploadimg');
 
 
 Route::get('/dashboard/add-ico/',[
@@ -57,3 +56,35 @@ Route::get('/dashboard/add-ico/',[
 Route::post('/dashboard/add-ico/',[
     'uses'=>'dashboard@postaddico'
 ]);
+
+
+
+//icopool
+
+
+Route::get('/dashboard/IcoPool',[
+    'uses'=>'dashboard@icopool',
+    'as'=>'icopool'
+]);
+Route::get('/dashboard/xoaicopool/{id}',[
+    'uses'=>'dashboard@xoaicopool',
+    'as'=>'xoaicopool'
+]);
+
+Route::get('/dashboard/edit-IcoPool/{id}',[
+    'uses'=>'dashboard@editicopool',
+    'as'=>'editicopool'
+]);
+/*Route::post('/dashboard/edit-IcoPool/{id}',[
+    'uses'=>'dashboard@postediticopool'
+]);
+
+
+
+Route::get('/dashboard/add-IcoPool/',[
+    'uses'=>'dashboard@addicopool',
+    'as'=>'addicopool'
+]);
+Route::post('/dashboard/add-IcoPool/',[
+    'uses'=>'dashboard@postaddicopool'
+]);*/
