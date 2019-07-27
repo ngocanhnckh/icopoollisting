@@ -41,7 +41,7 @@
         <!-- end::Global Config -->
 
         <!--begin:: Global Mandatory Vendors -->
-        <script src="./assets/vendors/general/jquery/dist/jquery.js" type="text/javascript"></script>
+
         <script src="./assets/vendors/general/popper.js/dist/umd/popper.js" type="text/javascript"></script>
         <script src="./assets/vendors/general/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="./assets/vendors/general/js-cookie/src/js.cookie.js" type="text/javascript"></script>
@@ -127,6 +127,9 @@
         });
     </script>
         <!--end::Page Scripts -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.min.js"></script>
+
     </body>
 
     <!-- end::Body -->

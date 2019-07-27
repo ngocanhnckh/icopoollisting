@@ -75,11 +75,11 @@ Route::get('/dashboard/edit-IcoPool/{id}',[
     'uses'=>'dashboard@editicopool',
     'as'=>'editicopool'
 ]);
-/*Route::post('/dashboard/edit-IcoPool/{id}',[
+Route::post('/dashboard/edit-IcoPool/{id}',[
     'uses'=>'dashboard@postediticopool'
 ]);
 
-
+/*
 
 Route::get('/dashboard/add-IcoPool/',[
     'uses'=>'dashboard@addicopool',

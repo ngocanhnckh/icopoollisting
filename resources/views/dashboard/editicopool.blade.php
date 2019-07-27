@@ -1,17 +1,29 @@
 @extends('dashboard.master')
 @section('content')
+<script type="text/javascript">
+        $(function(){
+            $('#activeico').tokenfield({
+                autocomplete:{
+                    source:['{!!$icoarrstr!!}'],
+                    delay:100
+                },
+                showAutocompleteOnFocus: true
+            });
+        });
+
+    </script>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="kt-portlet">
-                <a href="{{route('ico')}}" class="form-text text-muted"><i class="flaticon2-back"></i> Back</a>
+                <a href="{{route('icopool')}}" class="form-text text-muted"><i class="flaticon2-back"></i> Back</a>
                 <div class="kt-portlet__head">
                     <div class="kt-portlet__head-label">
                         <span class="kt-portlet__head-icon kt-hidden">
                             <i class="la la-gear"></i>
                         </span>
                         <h3 class="kt-portlet__head-title">
-                            Profile of Admin
+                            Edit {{$icopool->name}}
                         </h3>
                     </div>
                 </div>
@@ -27,65 +39,64 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-2 col-form-label">Min cap:</label>
+                                <label class="col-lg-2 col-form-label">Active ICO:</label>
                                 <div class="col-lg-4">
-                                    <input name="mincap" type="text" class="form-control" placeholder="Enter Min cap" value="{{$icopool->mincap}}">
+                                    <input type="text" name="activeico" id="activeico" value="{{$icopool->activeico}}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label">Number Of Participants:</label>
+                                <div class="col-lg-4">
+                                    <input name="numofparticipants" type="text" class="form-control" placeholder="Enter Number Of Participants " value="{{$icopool->numofparticipants}}">
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-2 col-form-label">Bonus:</label>
+                                <label class="col-lg-2 col-form-label">Tok. distr. :</label>
                                 <div class="col-lg-4">
-                                    <input name="bonus" type="text" class="form-control" placeholder="Enter Bonus " value="{{$icopool->bonus}}">
+                                    <input name="tok_distr" type="text" class="form-control" placeholder="Enter Tok. distr." value="{{$icopool->tok_distr}}">
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-2 col-form-label">Commission:</label>
+                                <label class="col-lg-2 col-form-label">Rating:</label>
                                 <div class="col-lg-4">
-                                    <input name="commission" type="text" class="form-control" placeholder="Enter Commission" value="{{$icopool->Commission}}">
+                                    <input name="rating" type="text" class="form-control" placeholder="Enter Rating" value="{{$icopool->rating}}">
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-2 col-form-label">Raised:</label>
+                                <label class="col-lg-2 col-form-label">Lang.:</label>
                                 <div class="col-lg-4">
-                                    <input name="raised" type="text" class="form-control" placeholder="Enter Raised" value="{{$icopool->raised}}">
+                                    <input name="lang" type="text" class="form-control" placeholder="Enter Lang" value="{{$icopool->lang}}">
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-2 col-form-label">Product:</label>
+                                <label class="col-lg-2 col-form-label">Access:</label>
                                 <div class="col-lg-4">
-                                    <input name="product" type="text" class="form-control" placeholder="Enter Product" value="{{$icopool->Product}}">
+                                    <input name="access" type="text" class="form-control" placeholder="Enter Access" value="{{$icopool->access}}">
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-2 col-form-label">Team and partners:</label>
+                                <label class="col-lg-2 col-form-label">Created:</label>
                                 <div class="col-lg-4">
-                                    <input name="teamnpartner" type="text" class="form-control" placeholder="Enter Team and partners" value="{{$icopool->teamnpartner}}">
+                                    <input name="created" type="text" class="form-control" placeholder="Enter Created" value="{{$icopool->created}}">
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-2 col-form-label">Market:</label>
+                                <label class="col-lg-2 col-form-label">Addr.:</label>
                                 <div class="col-lg-4">
-                                    <input name="market" type="text" class="form-control" placeholder="Enter Market" value="{{$icopool->Market}}">
-                                    <span class="form-text text-muted"></span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-2 col-form-label">Average:</label>
-                                <div class="col-lg-4">
-                                    <input name="average" type="text" class="form-control" placeholder="Enter Average" value="{{$icopool->average}}">
+                                    <input name="addr" type="text" class="form-control" placeholder="Enter Addr." value="{{$icopool->addr}}">
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">Description:</label>
                                 <div class="col-lg-12">
-                                    <textarea style="height: 150%;" class="form-control" id="summary-ckeditor" name="description">{{$icopool->Description}}</textarea>
+                                    <textarea style="height: 150%;" class="form-control" id="summary-ckeditor" name="description">{{$icopool->description}}</textarea>
                                     <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
                                     <script>
                                         CKEDITOR.replace( 'summary-ckeditor', {

@@ -25,7 +25,7 @@
                                 <th>Rating</th>
                                 <th>Lang.</th>
                                 <th>Access</th>
-                                <th>Create</th>
+                                <th>Created</th>
                                 <th>Addr.</th>
                                 <th>Action</th>
                             </tr>

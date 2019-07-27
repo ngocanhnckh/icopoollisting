@@ -170,8 +170,18 @@ class dashboard extends Controller
         $icopool=icopool::find($id);
         $admin=admin::all();
         $trang='editicopool';
+        $activeico=$icopool->activeico;
+        $ico=ico::all();
+        $icoc=ico::count();
+        $icoarr=[];$dem=0;
+        for($i=0;$i<$icoc;$i++){
+            $icoarr[$dem]=$ico[$i]->name;
+            $dem++;
 
-        return view('dashboard.editicopool',compact('trang','icopool','admin'));
+        }
+        $icoarrstr=implode("','", $icoarr);
+        //dd("['".$icoarrstr);
+        return view('dashboard.editicopool',compact('trang','icopool','admin','activeico','icoarrstr'));
     }
     public function postediticopool(Request $req,$id){
         function to_slug($str) {
@@ -187,20 +197,20 @@ class dashboard extends Controller
             $str = preg_replace('/([\s]+)/', '-', $str);
             return $str;
         }
-        $ico=ico::find($id);
-        $ico->name=         $req->name;
-        $ico->mincap=       $req->mincap;
-        $ico->bonus=        $req->bonus;
-        $ico->Commission=   $req->commission;
-        $ico->raised=       $req->raised;
-        $ico->Product=      $req->product;
-        $ico->teamnpartner= $req->teamnpartner;
-        $ico->Market=       $req->market;
-        $ico->average=      $req->average;
-        $ico->Description=  $req->description;
+        $icopool=icopool::find($id);
+        $icopool->name=                     $req->name;
+        $icopool->activeico=                $req->activeico;
+        $icopool->numofparticipants=        $req->numofparticipants;
+        $icopool->tok_distr=                $req->tok_distr;
+        $icopool->rating=                   $req->rating;
+        $icopool->lang=                     $req->lang;
+        $icopool->access=                   $req->access;
+        $icopool->created=                  $req->created;
+        $icopool->addr=                     $req->addr;
+        $icopool->Description=              $req->description;
 
-        $ico->slug=to_slug($req->name);
-        $ico->save();
+        $icopool->slug=to_slug($req->name);
+        $icopool->save();
         return redirect()->back();
     }
 }
