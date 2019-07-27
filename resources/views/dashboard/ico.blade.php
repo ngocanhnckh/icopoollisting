@@ -1,12 +1,13 @@
 @extends('dashboard.master')
 @section('content')
 <div class="container-fluid">
-    <div class="kt-portlet">
+    <div class="kt-portlet" style="overflow: auto;">
         <div class="kt-portlet__head">
             <div class="kt-portlet__head-label">
                 <h3 class="kt-portlet__head-title">
                     All ico
                 </h3>
+                <button onclick="window.location='{{route('addico')}}'" class="btn btn-warning ml-lg-5  ml-2 btn-pill" >+ Add New</button>
             </div>
         </div>
         <div class="kt-portlet__body">

@@ -25,7 +25,7 @@ class CKEditorController extends Controller
             $request->file('upload')->storeAs('public/uploads', $filenametostore);
 
             $CKEditorFuncNum = $request->input('CKEditorFuncNum');
-            $url = asset('storage/uploads/'.$filenametostore);
+            $url = asset('storage/app/public/uploads/'.$filenametostore);
             $msg = 'Image successfully uploaded';
             $re = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
 

@@ -9,6 +9,7 @@ use App\icopool;
 use App\ads;
 class dashboard extends Controller
 {
+
     public function postlogin(Request $req){
         $err=0;
         if(Auth::attempt(['username'=>$req->username,'password'=>$req->password])){
@@ -84,6 +85,71 @@ class dashboard extends Controller
         return view('dashboard.editico',compact('trang','ico','admin'));
     }
     public function posteditico(Request $req,$id){
-        echo $req->description;
+        function to_slug($str) {
+            $str = trim(mb_strtolower($str));
+            $str = preg_replace('/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/', 'a', $str);
+            $str = preg_replace('/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/', 'e', $str);
+            $str = preg_replace('/(ì|í|ị|ỉ|ĩ)/', 'i', $str);
+            $str = preg_replace('/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/', 'o', $str);
+            $str = preg_replace('/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/', 'u', $str);
+            $str = preg_replace('/(ỳ|ý|ỵ|ỷ|ỹ)/', 'y', $str);
+            $str = preg_replace('/(đ)/', 'd', $str);
+            $str = preg_replace('/[^a-z0-9-\s]/', '', $str);
+            $str = preg_replace('/([\s]+)/', '-', $str);
+            return $str;
+        }
+        $ico=ico::find($id);
+        $ico->name=         $req->name;
+        $ico->mincap=       $req->mincap;
+        $ico->bonus=        $req->bonus;
+        $ico->Commission=   $req->commission;
+        $ico->raised=       $req->raised;
+        $ico->Product=      $req->product;
+        $ico->teamnpartner= $req->teamnpartner;
+        $ico->Market=       $req->market;
+        $ico->average=      $req->average;
+        $ico->Description=  $req->description;
+
+        $ico->slug=to_slug($req->name);
+        $ico->save();
+        return redirect()->back();
+    }
+
+    public function addico(){
+        $ico=ico::all();
+        $admin=admin::all();
+        $trang='addico';
+
+        return view('dashboard.addico',compact('trang','ico','admin'));
+    }
+    public function postaddico(Request $req){
+        function to_slug($str) {
+            $str = trim(mb_strtolower($str));
+            $str = preg_replace('/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/', 'a', $str);
+            $str = preg_replace('/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/', 'e', $str);
+            $str = preg_replace('/(ì|í|ị|ỉ|ĩ)/', 'i', $str);
+            $str = preg_replace('/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/', 'o', $str);
+            $str = preg_replace('/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/', 'u', $str);
+            $str = preg_replace('/(ỳ|ý|ỵ|ỷ|ỹ)/', 'y', $str);
+            $str = preg_replace('/(đ)/', 'd', $str);
+            $str = preg_replace('/[^a-z0-9-\s]/', '', $str);
+            $str = preg_replace('/([\s]+)/', '-', $str);
+            return $str;
+        }
+        $ico=new ico;
+        $ico->name=         $req->name;
+        $ico->mincap=       $req->mincap;
+        $ico->bonus=        $req->bonus;
+        $ico->Commission=   $req->commission;
+        $ico->raised=       $req->raised;
+        $ico->Product=      $req->product;
+        $ico->teamnpartner= $req->teamnpartner;
+        $ico->Market=       $req->market;
+        $ico->average=      $req->average;
+        $ico->Description=  $req->description;
+
+        $ico->slug=to_slug($req->name);
+        $ico->save();
+        return redirect()->back();
     }
 }

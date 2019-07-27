@@ -16,76 +16,76 @@
                     </div>
                 </div>
                 <!--begin::Form-->
-                <form class="kt-form" method="post" action="{{route('editico',$ico->id)}}">
+                <form class="kt-form" method="post" action="{{route('addico')}}">
                     @csrf
                     <div class="kt-portlet__body">
                         <div class="kt-form__section kt-form__section--first">
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">ICO NAME:</label>
                                 <div class="col-lg-4">
-                                    <input type="text" class="form-control" placeholder="Enter ICO name" name="name" value="{{$ico->name}}">
+                                    <input type="text" class="form-control" placeholder="Enter ICO name" name="name" >
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">Min cap:</label>
                                 <div class="col-lg-4">
-                                    <input name="mincap" type="text" class="form-control" placeholder="Enter Min cap" value="{{$ico->mincap}}">
+                                    <input name="mincap" type="text" class="form-control" placeholder="Enter Min cap" >
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">Bonus:</label>
                                 <div class="col-lg-4">
-                                    <input name="bonus" type="text" class="form-control" placeholder="Enter Bonus " value="{{$ico->bonus}}">
+                                    <input name="bonus" type="text" class="form-control" placeholder="Enter Bonus " >
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">Commission:</label>
                                 <div class="col-lg-4">
-                                    <input name="commission" type="text" class="form-control" placeholder="Enter Commission" value="{{$ico->Commission}}">
+                                    <input name="commission" type="text" class="form-control" placeholder="Enter Commission" >
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">Raised:</label>
                                 <div class="col-lg-4">
-                                    <input name="raised" type="text" class="form-control" placeholder="Enter Raised" value="{{$ico->raised}}">
+                                    <input name="raised" type="text" class="form-control" placeholder="Enter Raised" >
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">Product:</label>
                                 <div class="col-lg-4">
-                                    <input name="product" type="text" class="form-control" placeholder="Enter Product" value="{{$ico->Product}}">
+                                    <input name="product" type="text" class="form-control" placeholder="Enter Product" >
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">Team and partners:</label>
                                 <div class="col-lg-4">
-                                    <input name="teamnpartner" type="text" class="form-control" placeholder="Enter Team and partners" value="{{$ico->teamnpartner}}">
+                                    <input name="teamnpartner" type="text" class="form-control" placeholder="Enter Team and partners" >
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">Market:</label>
                                 <div class="col-lg-4">
-                                    <input name="market" type="text" class="form-control" placeholder="Enter Market" value="{{$ico->Market}}">
+                                    <input name="market" type="text" class="form-control" placeholder="Enter Market">
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">Average:</label>
                                 <div class="col-lg-4">
-                                    <input name="average" type="text" class="form-control" placeholder="Enter Average" value="{{$ico->average}}">
+                                    <input name="average" type="text" class="form-control" placeholder="Enter Average">
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">Description:</label>
                                 <div class="col-lg-12">
-                                    <textarea style="height: 150%;" class="form-control" id="summary-ckeditor" name="description">{{$ico->Description}}</textarea>
+                                    <textarea style="height: 150%;" class="form-control" id="summary-ckeditor" name="description"></textarea>
                                     <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
                                     <script>
                                         CKEDITOR.replace( 'summary-ckeditor', {

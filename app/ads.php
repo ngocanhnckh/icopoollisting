@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class ads extends Model
 {
     protected $table='ads';
+    public $timestamps = false;
 }

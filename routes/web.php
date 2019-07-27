@@ -30,6 +30,8 @@ Route::get('/dashboard/profile',[
 Route::post('/dashboard/profile',[
     'uses'=>'dashboard@postProfile'
 ]);
+
+//ico
 Route::get('/dashboard/ico',[
     'uses'=>'dashboard@ico',
     'as'=>'ico'
@@ -46,3 +48,12 @@ Route::post('/dashboard/edit-ico/{id}',[
     'uses'=>'dashboard@posteditico'
 ]);
 Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('uploadimg');
+
+
+Route::get('/dashboard/add-ico/',[
+    'uses'=>'dashboard@addico',
+    'as'=>'addico'
+]);
+Route::post('/dashboard/add-ico/',[
+    'uses'=>'dashboard@postaddico'
+]);
