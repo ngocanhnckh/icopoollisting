@@ -4,61 +4,48 @@
     <div class="row">
         <div class="col-md-12">
             <div class="kt-portlet">
-                <a href="{{route('ico')}}" class="form-text text-muted"><i class="flaticon2-back"></i> Back</a>
+                <a href="{{route('ads')}}" class="form-text text-muted"><i class="flaticon2-back"></i> Back</a>
                 <div class="kt-portlet__head">
                     <div class="kt-portlet__head-label">
                         <span class="kt-portlet__head-icon kt-hidden">
                             <i class="la la-gear"></i>
                         </span>
                         <h3 class="kt-portlet__head-title">
-                            Edit {{$ico->name}}
+                            Add ADS
                         </h3>
                     </div>
                 </div>
                 <!--begin::Form-->
-                <form class="kt-form" method="post" action="{{route('editico',$ico->id)}}">
+                <form class="kt-form" method="post" action="{{route('addads')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="kt-portlet__body">
                         <div class="kt-form__section kt-form__section--first">
                             <div class="form-group row">
-                                <label class="col-lg-2 col-form-label">ICO NAME:</label>
+                                <label class="col-lg-2 col-form-label">ADS NAME:</label>
                                 <div class="col-lg-4">
-                                    <input type="text" class="form-control" placeholder="Enter ICO name" name="name" value="{{$ico->name}}">
+                                    <input required="" type="text" class="form-control" placeholder="Enter ADS name" name="name" >
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-lg-2 col-form-label">Product:</label>
+                                <label class="col-lg-2 col-form-label">Người thuê:</label>
                                 <div class="col-lg-4">
-                                    <input name="product" type="text" class="form-control" placeholder="Enter Product" value="{{$ico->Product}}">
+                                    <input required="" name="ngthue" type="text" class="form-control" placeholder="" >
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-lg-2 col-form-label">Team and partners:</label>
+                                <label class="col-lg-2 col-form-label">Image:</label>
                                 <div class="col-lg-4">
-                                    <input name="teamnpartner" type="text" class="form-control" placeholder="Enter Team and partners" value="{{$ico->teamnpartner}}">
+                                    <input required="" name="img" type="file" accept="image/*"class="form-control" >
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-lg-2 col-form-label">Market:</label>
-                                <div class="col-lg-4">
-                                    <input name="market" type="text" class="form-control" placeholder="Enter Market" value="{{$ico->Market}}">
-                                    <span class="form-text text-muted"></span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-2 col-form-label">Average:</label>
-                                <div class="col-lg-4">
-                                    <input name="average" type="text" class="form-control" placeholder="Enter Average" value="{{$ico->average}}">
-                                    <span class="form-text text-muted"></span>
-                                </div>
-                            </div>
+
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">Description:</label>
                                 <div class="col-lg-12">
-                                    <textarea style="height: 150%;" class="form-control" id="summary-ckeditor" name="description">{{$ico->Description}}</textarea>
+                                    <textarea style="height: 150%;" class="form-control" id="summary-ckeditor" name="description"></textarea>
                                     <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
                                     <script>
                                         CKEDITOR.replace( 'summary-ckeditor', {

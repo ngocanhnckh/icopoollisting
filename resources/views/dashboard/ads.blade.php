@@ -5,9 +5,9 @@
         <div class="kt-portlet__head">
             <div class="kt-portlet__head-label">
                 <h3 class="kt-portlet__head-title">
-                    All ico
+                    All ADS
                 </h3>
-                <button onclick="window.location='{{route('addico')}}'" class="btn btn-warning ml-lg-5  ml-2 btn-pill" >+ Add New</button>
+                <button onclick="window.location='{{route('addads')}}'" class="btn btn-outline-success ml-lg-5  ml-2 btn-pill" >+ Add New</button>
             </div>
         </div>
         <div class="kt-portlet__body">
@@ -18,23 +18,21 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>ICO Name</th>
+                                <th>ADS Name</th>
 
-                                <th>Product</th>
-                                <th>Team and partners</th>
-                                <th>Market</th>
+                                <th>Người thuê Quảng cáo</th>
+
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($ico as $data)
+                            @foreach($ads as $data)
                             <tr>
                                 <th scope="row">{{$data->id}}</th>
                                 <td>{{$data->name}}</td>
 
-                                <td>{{$data->Product}}</td>
-                                <td>{{$data->teamnpartner}}</td>
-                                <td>{{$data->Market}}</td>
+                                <td>{{$data->nguoithue}}</td>
+
                                 <td>
                                     <button onclick="window.location='{{route('editico',$data->id)}}'"  type="button" class="btn btn-brand btn-elevate btn-pill">
                                         <i class="flaticon-edit"></i>

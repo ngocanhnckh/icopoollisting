@@ -11,7 +11,7 @@
                             <i class="la la-gear"></i>
                         </span>
                         <h3 class="kt-portlet__head-title">
-                            Profile of Admin
+                            Add ICO
                         </h3>
                     </div>
                 </div>
@@ -26,34 +26,7 @@
                                     <input type="text" class="form-control" placeholder="Enter ICO name" name="name" >
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-lg-2 col-form-label">Min cap:</label>
-                                <div class="col-lg-4">
-                                    <input name="mincap" type="text" class="form-control" placeholder="Enter Min cap" >
-                                    <span class="form-text text-muted"></span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-2 col-form-label">Bonus:</label>
-                                <div class="col-lg-4">
-                                    <input name="bonus" type="text" class="form-control" placeholder="Enter Bonus " >
-                                    <span class="form-text text-muted"></span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-2 col-form-label">Commission:</label>
-                                <div class="col-lg-4">
-                                    <input name="commission" type="text" class="form-control" placeholder="Enter Commission" >
-                                    <span class="form-text text-muted"></span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-2 col-form-label">Raised:</label>
-                                <div class="col-lg-4">
-                                    <input name="raised" type="text" class="form-control" placeholder="Enter Raised" >
-                                    <span class="form-text text-muted"></span>
-                                </div>
-                            </div>
+
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">Product:</label>
                                 <div class="col-lg-4">

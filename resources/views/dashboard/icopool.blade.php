@@ -1,13 +1,28 @@
 @extends('dashboard.master')
 @section('content')
+<?php
+    function to_slug($str) {
+            $str = trim(mb_strtolower($str));
+            $str = preg_replace('/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/', 'a', $str);
+            $str = preg_replace('/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/', 'e', $str);
+            $str = preg_replace('/(ì|í|ị|ỉ|ĩ)/', 'i', $str);
+            $str = preg_replace('/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/', 'o', $str);
+            $str = preg_replace('/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/', 'u', $str);
+            $str = preg_replace('/(ỳ|ý|ỵ|ỷ|ỹ)/', 'y', $str);
+            $str = preg_replace('/(đ)/', 'd', $str);
+            $str = preg_replace('/[^a-z0-9-\s]/', '', $str);
+            $str = preg_replace('/([\s]+)/', '-', $str);
+            return $str;
+        }
+?>
 <div class="container-fluid">
     <div class="kt-portlet" style="overflow: auto;">
         <div class="kt-portlet__head">
             <div class="kt-portlet__head-label">
                 <h3 class="kt-portlet__head-title">
-                    All ico
+                    All ico pool
                 </h3>
-                <button onclick="window.location='{{route('addico')}}'" class="btn btn-warning ml-lg-5  ml-2 btn-pill" >+ Add New</button>
+                <button onclick="window.location='{{route('addicopool')}}'" class="btn btn-warning ml-lg-5  ml-2 btn-pill" >+ Add New</button>
             </div>
         </div>
         <div class="kt-portlet__body">
@@ -31,24 +46,41 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($icopool as $data)
+                            @for($i=0;$i<count($icopool);$i++)
                             <tr>
-                                <th scope="row">{{$data->id}}</th>
-                                <td>{{$data->name}}</td>
-                                <td>{{$data->activeico}}</td>
-                                <td>{{$data->numofparticipants}}</td>
-                                <td>{{$data->tok_distr}}</td>
-                                <td>{{$data->rating}}</td>
-                                <td>{{$data->lang}}</td>
-                                <td>{{$data->access}}</td>
-                                <td>{{$data->created}}</td>
-                                <td>{{$data->addr}}</td>
+                                <th scope="row">{{$icopool[$i]->id}}</th>
+                                <td>{{$icopool[$i]->name}}</td>
+                                <td><?php
+
+                                    $str=$activearr[$i].',';$mid='';
+                                    for($j=0;$j<strlen($str);$j++){
+                                        if($str[$j]==','){
+                                            if($j!=strlen($str)-1){
+                                                echo "<a href='".route('setico', ['icopool'=>to_slug($icopool[$i]->name), 'ico'=>to_slug($mid)])."'>$mid, </a>";
+                                            }
+                                            else echo "<a href='".route('setico', ['icopool'=>to_slug($icopool[$i]->name), 'ico'=>to_slug($mid)])."'>$mid</a>";
+                                            $mid='';
+                                        }
+                                        else if($str[$j]==' '&&$str[$j-1]==','){continue;}
+                                        else{
+                                            $mid=$mid.''.$str[$j];
+                                        }
+                                    }
+
+                                ?></td>
+                                <td>{{$icopool[$i]->numofparticipants}}</td>
+                                <td>{{$icopool[$i]->tok_distr}}</td>
+                                <td>{{$icopool[$i]->rating}}</td>
+                                <td>{{$icopool[$i]->lang}}</td>
+                                <td>{{$icopool[$i]->access}}</td>
+                                <td>{{$icopool[$i]->created}}</td>
+                                <td>{{$icopool[$i]->addr}}</td>
                                 <td>
-                                    <button onclick="window.location='{{route('editicopool',$data->id)}}'"  type="button" class="btn btn-brand btn-elevate btn-pill">
+                                    <button onclick="window.location='{{route('editicopool',$icopool[$i]->id)}}'"  type="button" class="btn btn-brand btn-elevate btn-pill">
                                         <i class="flaticon-edit"></i>
                                         Edit
                                     </button>
-                                    <button onclick="window.location='{{route('xoaicopool',$data->id)}}'" type="button" class="btn btn-brand btn-elevate btn-pill btn-danger">
+                                    <button onclick="window.location='{{route('xoaicopool',$icopool[$i]->id)}}'" type="button" class="btn btn-brand btn-elevate btn-pill btn-danger">
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <polygon id="Shape" points="0 0 24 0 24 24 0 24"/>
@@ -60,8 +92,11 @@
                                     </button>
                                 </td>
                             </tr>
-                            @endforeach
+
+                            @endfor
+
                         </tbody>
+<span class="text-muted">Click Active ICO to set Min cap, Bonus, Comm.</span>
                     </table>
                 </div>
             </div>

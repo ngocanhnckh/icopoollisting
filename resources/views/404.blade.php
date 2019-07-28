@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!-- 
+<!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4 & Angular 7
 Author: KeenThemes
 Website: http://www.keenthemes.com/
@@ -18,7 +18,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<head>
 
 		<!--begin::Base Path (base relative path for assets of this page) -->
-		<base href="../../../../">
+		<base href="{{asset('public/dashboard')}}/">
 
 		<!--end::Base Path -->
 		<meta charset="utf-8" />

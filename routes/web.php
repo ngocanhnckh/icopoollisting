@@ -79,7 +79,15 @@ Route::post('/dashboard/edit-IcoPool/{id}',[
     'uses'=>'dashboard@postediticopool'
 ]);
 
-/*
+
+Route::get('/dashboard/set-ico/{icopool}/{ico}',[
+    'uses'=>'dashboard@setico',
+    'as'=>'setico'
+]);
+Route::post('/dashboard/set-ico/{icopool}/{ico}',[
+    'uses'=>'dashboard@postsetico',
+
+]);
 
 Route::get('/dashboard/add-IcoPool/',[
     'uses'=>'dashboard@addicopool',
@@ -87,4 +95,19 @@ Route::get('/dashboard/add-IcoPool/',[
 ]);
 Route::post('/dashboard/add-IcoPool/',[
     'uses'=>'dashboard@postaddicopool'
-]);*/
+]);
+
+//ads
+
+Route::get('/dashboard/ads',[
+    'uses'=>'dashboard@ads',
+    'as'=>'ads'
+]);
+Route::get('/dashboard/add-ads/',[
+    'uses'=>'dashboard@addads',
+    'as'=>'addads'
+]);
+Route::post('/dashboard/add-ads/',[
+    'uses'=>'dashboard@postaddads'
+
+]);
