@@ -110,6 +110,17 @@ class dashboard extends Controller
     }
     public function xoaico($id){
         $ico=ico::find($id);
+        $icopool=icopool::all();
+        $icopoolc=icopool::count();
+        for($i=0;$i<$icopoolc;$i++){
+            if (strlen(strstr($icopool[$i]->activeico, $ico->name)) > 0) {
+                $str=$icopool[$i]->activeico;
+                $str = str_replace( $ico->name, '', $str );
+                $save=icopool::find($icopool[$i]->id);
+                $save->activeico=$str;
+                $save->save();
+            }
+        }
         $ico->delete();
         return redirect()->back();
     }
@@ -143,6 +154,8 @@ class dashboard extends Controller
         return view('dashboard.addico',compact('trang','ico','admin'));
     }
     public function postaddico(Request $req){
+        $check=ico::all()->where('name',$req->name);
+        if(count($check)>0) return"Đã Tồn tại Ico này. Bạn sẽ được chuyển hướng sau 5s<script>setTimeout(function(){window.location='".route('addico')."'},5000);</script>";
         $ico=new ico;
         $ico->name=         $req->name;
         $ico->Product=      $req->product;
@@ -158,6 +171,7 @@ class dashboard extends Controller
     //ico pool
 
     public function icopool(){
+
         $admin=admin::all();
         $trang='icopool';
         $icopool=icopool::all();
@@ -209,6 +223,7 @@ class dashboard extends Controller
     }
 
     public function addicopool(){
+
         $admin=admin::all();
         $trang='addicopool';
         $icopool=icopool::all();
@@ -216,7 +231,8 @@ class dashboard extends Controller
         return view('dashboard.addicopool',compact('trang','admin','icopool','icoarrstr'));
     }
     public function postaddicopool(Request $req){
-
+        $check=icopool::all()->where('name',$req->name);
+        if(count($check)>0) return"Đã Tồn tại Pool này. Bạn sẽ được chuyển hướng sau 5s<script>setTimeout(function(){window.location='".route('addicopool')."'},5000);</script>";
         $icopool=new icopool;
         $icopool->name=                     $req->name;
         $icopool->activeico=                $req->activeico;
@@ -330,5 +346,48 @@ class dashboard extends Controller
         $ads->description=$req->description;
         $ads->save();
         return redirect()->route('ads');
+    }
+    public function xoaads($id){
+        $ads=ads::find($id);
+        $ads->delete();
+        return redirect()->back();
+    }
+    public function editads($id){
+        $ico=ico::all();
+        $admin=admin::all();
+        $trang='addico';
+        $ads=ads::find($id);
+        return view('dashboard.editads',compact('trang','ico','admin','ads'));
+    }
+    public function posteditads(Request $req,$id){
+        if($req->img==null){
+            $ads=ads::find($id);
+            $ads->name=$req->name;
+            $ads->nguoithue=$req->ngthue;
+            $ads->description=$req->description;
+            $ads->save();
+            return redirect()->route('ads');
+        }
+        $filenamewithextension = $req->file('img')->getClientOriginalName();
+
+        //get filename without extension
+        $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
+
+        //get file extension
+        $extension = $req->file('img')->getClientOriginalExtension();
+
+        //filename to store
+        $filenametostore = $filename.'_'.time().'.'.$extension;
+        $req->file('img')->move(
+            'public/uploadads', //nơi cần lưu
+            $filenametostore //tên file
+        );
+        $ads=ads::find($id);
+            $ads->name=$req->name;
+            $ads->nguoithue=$req->ngthue;
+            $ads->tenhinh=$filenametostore;
+            $ads->description=$req->description;
+            $ads->save();
+            return redirect()->route('ads');
     }
 }

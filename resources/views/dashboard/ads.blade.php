@@ -34,11 +34,11 @@
                                 <td>{{$data->nguoithue}}</td>
 
                                 <td>
-                                    <button onclick="window.location='{{route('editico',$data->id)}}'"  type="button" class="btn btn-brand btn-elevate btn-pill">
+                                    <button onclick="window.location='{{route('editads',$data->id)}}'"  type="button" class="btn btn-brand btn-elevate btn-pill">
                                         <i class="flaticon-edit"></i>
                                         Edit
                                     </button>
-                                    <button onclick="window.location='{{route('xoaico',$data->id)}}'" type="button" class="btn btn-brand btn-elevate btn-pill btn-danger">
+                                    <button onclick="window.location='{{route('xoaads',$data->id)}}'" type="button" class="btn btn-brand btn-elevate btn-pill btn-danger">
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <polygon id="Shape" points="0 0 24 0 24 24 0 24"/>
