@@ -146,7 +146,9 @@ License: You must have a valid license purchased only from themeforest(the above
 									<div class="kt-login__actions">
 										<input type="submit" value="Sign In"  class="btn btn-brand btn-pill kt-login__btn-primary"/>
 									</div>
-
+                                    <div class="kt-login__actions">
+                                        <a href="{{route('forgot')}}">Forgot passoword?</a>
+                                    </div>
 								</form>
 							</div>
 

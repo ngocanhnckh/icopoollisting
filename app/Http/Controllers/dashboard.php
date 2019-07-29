@@ -45,10 +45,82 @@ class dashboard extends Controller
             $str = preg_replace('/([\s]+)/', '-', $str);
             return $str;
         }
+    public function acc(){
+        $admin=admin::all();
+        $trang='acc';
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 5s<script>setTimeout(function(){window.location='".route('dashboard')."'},5000);</script>";
+        }
+        return view('dashboard.acc',compact('admin','trang'));
+    }
+    public function editacc($id){
+        $admin=admin::find($id);
+        $trang='d';
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 5s<script>setTimeout(function(){window.location='".route('dashboard')."'},5000);</script>";
+        }
+
+        return view('dashboard.editacc',compact('admin','trang'));
+    }
+    public function posteditacc(Request $req,$id){
+        if($req->password!=$req->repassword){
+            return "Mật khẩu nhập lại không khớp. Bạn sẽ được chuyển hướng sau 5s<script>setTimeout(function(){window.location='".route('addacc')."'},5000);</script>";
+        }
+        $admin=admin::find($id);
+        $pass=$req->password;
+        $name=$req->name;
+        $username=$req->username;
+        $email=$req->email;
+        if($pass==null){
+            $admin->name=$name;
+            $admin->username=$username;
+            $admin->email=$email;
+            $admin->save();
+            return redirect()->route('acc');
+        }
+        else{
+            $admin->password=bcrypt($pass);
+            $admin->name=$name;
+            $admin->username=$username;
+            $admin->email=$email;
+            $admin->save();
+            return redirect()->route('acc');
+        }
+        return redirect()->route('acc');
+    }
+    public function addacc(){
+        $trang='d';
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 5s<script>setTimeout(function(){window.location='".route('dashboard')."'},5000);</script>";
+        }
+
+        return view('dashboard.addacc',compact('admin','trang'));
+    }
+    public function postaddacc(Request $req){
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 5s<script>setTimeout(function(){window.location='".route('dashboard')."'},5000);</script>";
+        }
+        if($req->password!=$req->repassword){
+            return "Mật khẩu nhập lại không khớp. Bạn sẽ được chuyển hướng sau 5s<script>setTimeout(function(){window.location='".route('addacc')."'},5000);</script>";
+        }
+        $admin=new admin;
+        $pass=$req->password;
+        $name=$req->name;
+        $username=$req->username;
+        $email=$req->email;
+
+        $admin->password=bcrypt($pass);
+        $admin->name=$name;
+        $admin->username=$username;
+        $admin->email=$email;
+        $admin->save();
+        return redirect()->route('acc');
+
+    }
 
     public function postlogin(Request $req){
         $err=0;
-        if(Auth::attempt(['username'=>$req->username,'password'=>$req->password])){
+        if(Auth::attempt(['username'=>$req->username,'password'=>$req->password],$req->remember)){
             return redirect()->route('dashboard');
         }
         else{
@@ -70,18 +142,22 @@ class dashboard extends Controller
         return redirect()->route('admin-login');
     }
     public function login(){
-
         return view('dashboard.login.login');
     }
+    public function forgot(){
+        return view('dashboard.login.forgot');
+    }
     public function profile(){
-        $admin=admin::all();
+        $admin=admin::find(Auth::user()->id);
 
         $trang='profile';
         return view('dashboard.profile',compact('admin','demico','demicopool','demads','trang'));
     }
     public function postProfile(Request $req){
-
-        $admin=admin::find(1);
+        if($req->password!=$req->repassword){
+            return "Mật khẩu nhập lại không khớp. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('addacc')."'},3000);</script>";
+        }
+        $admin=admin::find(Auth::user()->id);
         $pass=$req->password;
         $name=$req->name;
         $username=$req->username;

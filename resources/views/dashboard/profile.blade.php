@@ -23,21 +23,21 @@
                                             <div class="form-group row">
                                                 <label class="col-lg-2 col-form-label">Name:</label>
                                                 <div class="col-lg-4">
-                                                    <input type="text" class="form-control" placeholder="Enter full name" name="name" value="{{$admin[0]->name}}">
+                                                    <input type="text" class="form-control" placeholder="Enter full name" name="name" value="{{$admin->name}}">
                                                     <span class="form-text text-muted">Please enter your name</span>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-lg-2 col-form-label">Username:</label>
                                                 <div class="col-lg-4">
-                                                    <input name="username" type="text" class="form-control" placeholder="Enter full name" value="{{$admin[0]->username}}">
+                                                    <input name="username" type="text" class="form-control" placeholder="Enter full name" value="{{$admin->username}}">
                                                     <span class="form-text text-muted"></span>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-lg-2 col-form-label">Email address:</label>
                                                 <div class="col-lg-4">
-                                                    <input type="email" name="email" value="{{$admin[0]->email}}" class="form-control" placeholder="Enter email">
+                                                    <input type="email" name="email" value="{{$admin->email}}" class="form-control" placeholder="Enter email">
 
                                                 </div>
                                             </div>
@@ -51,6 +51,13 @@
                                                     <span class="form-text text-muted">Your current password doesn't show. If you don't change password please don't type in here</span>
                                                 </div>
                                             </div>
+                                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label">Re-Password:</label>
+                                <div class="col-lg-4">
+                                    <input  value="" name="repassword" type="password" required="" class="form-control" placeholder="Enter Password" >
+                                    <span class="form-text text-muted"></span>
+                                </div>
+                            </div>
 
                                         </div>
                                     </div>

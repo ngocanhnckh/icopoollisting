@@ -87,9 +87,9 @@
 																<b>{{$demads}}</b> ADS
 															</span>
 														</div>
-														<div class="kt-widget17__item" onclick="window.location='#'">
+														<div class="kt-widget17__item" onclick="window.location='{{route('ico')}}'">
                                                             <i class="fa fa-arrow-right"></i>
-															<a href="#"class="kt-widget17__subtitle">
+															<a href="{{route('ico')}}"class="kt-widget17__subtitle">
 																Edit
 															</a>
 															<span class="kt-widget17__desc">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th7 29, 2019 lúc 06:54 AM
+-- Thời gian đã tạo: Th7 29, 2019 lúc 03:51 PM
 -- Phiên bản máy phục vụ: 10.1.36-MariaDB
 -- Phiên bản PHP: 7.2.11
 
@@ -173,7 +173,7 @@ CREATE TABLE `users` (
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `view` int(11) NOT NULL
+  `view` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -181,7 +181,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `email`, `remember_token`, `created_at`, `updated_at`, `view`) VALUES
-(1, 'Admin', 'admin', '$2y$10$O8N1uncd7nOyVMHBD1onwOHR/WSs566NgsoZYC23l60qMDu.uul7.', 'admin@gmail.com', NULL, NULL, '2019-07-26 05:49:11', 4);
+(1, 'Admin', 'admin', '$2y$10$TPL/ltSJEWekpf7CLXW86eK01hPr8qVIFCYe4FuXBd.OGmmWEnDum', 'admin@gmail.com', 'pltxJtW5AahU8nlJ0dOFlhoFp97QwCTllTCdWPRajaDrdgN6aFiy4TnA5Qml', NULL, '2019-07-29 05:44:04', 4),
+(2, 'Bình', 'lequocbinh', '$2y$10$jnZH6XKcIJ3mdXproiP.xO55n5QcZk8eVe3ECUU2HNbf/Ga03d94O', 'binh27112004@gmail.com', NULL, '2019-07-29 06:04:27', '2019-07-29 06:04:27', NULL);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -261,7 +262,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

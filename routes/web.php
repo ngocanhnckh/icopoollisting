@@ -1,5 +1,5 @@
 <?php
-
+use App\admin;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -117,4 +117,38 @@ Route::get('/dashboard/edit-ads/{id}',[
 ]);
 Route::post('/dashboard/edit-ads/{id}',[
     'uses'=>'dashboard@posteditads'
+]);
+//account
+Route::get('/dashboard/account',[
+    'as'=>'acc',
+    'uses'=>'dashboard@acc'
+]);
+Route::get('/dashboard/account/edit/{id}',[
+    'as'=>'editacc',
+    'uses'=>'dashboard@editacc'
+]);
+Route::post('/dashboard/account/edit/{id}',[
+
+    'uses'=>'dashboard@posteditacc'
+]);
+Route::get('/dashboard/account/delete/{id}',function($id){
+    if($id==1){
+        return "Không có quyền xoá tài khoản admin. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+    }
+    $admin=admin::find($id);
+    $admin->delete();
+    return redirect()->back();
+})->name('xoaacc');
+
+Route::get('/dashboard/account/add',[
+    'as'=>'addacc',
+    'uses'=>'dashboard@addacc'
+]);
+Route::post('/dashboard/account/add',[
+
+    'uses'=>'dashboard@postaddacc'
+]);
+Route::get('/forgot',[
+    'as'=>'forgot',
+    'uses'=>'dashboard@forgot'
 ]);
