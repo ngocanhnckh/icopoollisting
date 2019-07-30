@@ -495,7 +495,7 @@ class dashboard extends Controller
         $ads->nguoithue=$req->ngthue;
         $ads->tenhinh=$filenametostore;
         $ads->description=$req->description;
-        $ico->idngpost = Auth::user()->id;
+        $ads->idngpost = Auth::user()->id;
         $ads->save();
         return redirect()->route('ads');
     }
