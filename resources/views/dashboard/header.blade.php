@@ -173,6 +173,7 @@ window.location = "{{route('admin-login')}}";
                                             </g>
                                         </svg></span><span class="kt-menu__link-text">Ico Pool</span></a>
                             </li>
+                            @if(Auth::user()->id==1)
                             <li class="kt-menu__item @if($trang=='ads')kt-menu__item--active @endif" aria-haspopup="true"><a href="{{route('ads')}}" class="kt-menu__link "><span class="kt-menu__link-icon"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                 <rect id="bound" x="0" y="0" width="24" height="24" />
@@ -180,6 +181,8 @@ window.location = "{{route('admin-login')}}";
                                                 <rect id="Rectangle-Copy-2" fill="#000000" opacity="0.3" transform="translate(17.825568, 11.945519) rotate(-19.000000) translate(-17.825568, -11.945519) " x="16.3255682" y="2.94551858" width="3" height="18" rx="1" />
                                             </g>
                                         </svg></span><span class="kt-menu__link-text">ADS</span></a></li>
+
+                            @endif
                             @if(Auth::user()->id==1)
                             <li class="kt-menu__section ">
                                 <h4 class="kt-menu__section-text">Account</h4>
@@ -283,6 +286,7 @@ window.location = "{{route('admin-login')}}";
                                                         </div>
                                                     </div>
                                                 </a>
+                                                @if(Auth::user()->id==1)
                                                 <a href="{{route('ads')}}" class="kt-notification__item">
                                                     <div class="kt-notification__item-icon">
                                                         <i class="flaticon2-chart2 kt-font-danger"></i>
@@ -296,6 +300,7 @@ window.location = "{{route('admin-login')}}";
                                                         </div>
                                                     </div>
                                                 </a>
+                                                @endif
 
                                             </div>
                                         </div>

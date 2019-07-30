@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th7 29, 2019 lúc 03:51 PM
+-- Thời gian đã tạo: Th7 30, 2019 lúc 11:42 AM
 -- Phiên bản máy phục vụ: 10.1.36-MariaDB
 -- Phiên bản PHP: 7.2.11
 
@@ -33,15 +33,16 @@ CREATE TABLE `ads` (
   `name` varchar(254) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nguoithue` varchar(254) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tenhinh` varchar(254) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(254) COLLATE utf8mb4_unicode_ci NOT NULL
+  `description` varchar(254) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `idngpost` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `ads`
 --
 
-INSERT INTO `ads` (`id`, `name`, `nguoithue`, `tenhinh`, `description`) VALUES
-(1, 'Kymco 50cc', 'bình', 'Huong dan Hoc gioi song tot 2019 (2)_1564324756.jpeg', '<p>abc</p>');
+INSERT INTO `ads` (`id`, `name`, `nguoithue`, `tenhinh`, `description`, `idngpost`) VALUES
+(1, 'Kymco 50cc', 'bình', 'Huong dan Hoc gioi song tot 2019 (2)_1564324756.jpeg', '<p>abc</p>', 1);
 
 -- --------------------------------------------------------
 
@@ -57,16 +58,18 @@ CREATE TABLE `ico` (
   `teamnpartner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `average` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Market` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Description` longtext COLLATE utf8mb4_unicode_ci
+  `Description` longtext COLLATE utf8mb4_unicode_ci,
+  `idngpost` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `ico`
 --
 
-INSERT INTO `ico` (`id`, `name`, `slug`, `Product`, `teamnpartner`, `average`, `Market`, `Description`) VALUES
-(1, 'Oasis Labs', 'oasis-labs', '8.1', '9.8', '8.6', '8.5', NULL),
-(2, 'CertiK', 'certik', '8.5', '9.5', '8.7', '9.5', NULL);
+INSERT INTO `ico` (`id`, `name`, `slug`, `Product`, `teamnpartner`, `average`, `Market`, `Description`, `idngpost`) VALUES
+(1, 'Oasis Labs', 'oasis-labs', '8.1', '9.8', '8.6', '8.5', NULL, 1),
+(2, 'CertiK', 'certik', '8.5', '9.5', '8.7', '9.5', NULL, 1),
+(5, 'Algorand', 'algorand', '7.8', '8.1', '7.8', '7.5', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -91,7 +94,8 @@ CREATE TABLE `icoactive` (
 INSERT INTO `icoactive` (`id`, `icopool`, `ico`, `mincap`, `bonus`, `comm`, `raised`) VALUES
 (1, 'ICO Dach', 'Oasis Labs', '-', '-', '-', 'ND'),
 (2, 'ICO Dach', 'CertiK', '123', '321', '123', '321123'),
-(3, 'Omega Block', 'Arcana', '0.15 ETH', '40%', '4%', '56 / 310 ETH');
+(3, 'Omega Block', 'Arcana', '0.15 ETH', '40%', '4%', '56 / 310 ETH'),
+(4, 'test 1', 'Oasis Labs', 'bk', 'b', 'b', 'b');
 
 -- --------------------------------------------------------
 
@@ -111,15 +115,17 @@ CREATE TABLE `icopool` (
   `access` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `addr` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` longtext COLLATE utf8mb4_unicode_ci
+  `description` longtext COLLATE utf8mb4_unicode_ci,
+  `idngpost` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `icopool`
 --
 
-INSERT INTO `icopool` (`id`, `name`, `slug`, `activeico`, `numofparticipants`, `tok_distr`, `rating`, `lang`, `access`, `created`, `addr`, `description`) VALUES
-(1, 'ICO Dach', 'ico-dach', 'Oasis Labs', '2775', '46', '9', 'EN', 'unlock', '17.06.17', 'https://t.me/ICODACH_EN', NULL);
+INSERT INTO `icopool` (`id`, `name`, `slug`, `activeico`, `numofparticipants`, `tok_distr`, `rating`, `lang`, `access`, `created`, `addr`, `description`, `idngpost`) VALUES
+(1, 'ICO Dach', 'ico-dach', 'Oasis Labs', '2775', '46', '9', 'EN', 'unlock', '17.06.17', 'https://t.me/ICODACH_EN', NULL, 1),
+(2, 'test 1', 'test-1', 'Oasis Labs, CertiK', '1', '1', '1', '1', '1', '1', '1', NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -181,8 +187,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `email`, `remember_token`, `created_at`, `updated_at`, `view`) VALUES
-(1, 'Admin', 'admin', '$2y$10$TPL/ltSJEWekpf7CLXW86eK01hPr8qVIFCYe4FuXBd.OGmmWEnDum', 'admin@gmail.com', 'pltxJtW5AahU8nlJ0dOFlhoFp97QwCTllTCdWPRajaDrdgN6aFiy4TnA5Qml', NULL, '2019-07-29 05:44:04', 4),
-(2, 'Bình', 'lequocbinh', '$2y$10$jnZH6XKcIJ3mdXproiP.xO55n5QcZk8eVe3ECUU2HNbf/Ga03d94O', 'binh27112004@gmail.com', NULL, '2019-07-29 06:04:27', '2019-07-29 06:04:27', NULL);
+(1, 'Admin', 'admin', '$2y$10$TPL/ltSJEWekpf7CLXW86eK01hPr8qVIFCYe4FuXBd.OGmmWEnDum', 'admin@gmail.com', 'wLjKT2UHlcjKHCE2sNIBwliSG2EqT1bupCcLKfc3c6TXnCqg2fS3EYAMkxRs', NULL, '2019-07-29 05:44:04', 4),
+(2, 'Bình', 'lequocbinh', '$2y$10$jnZH6XKcIJ3mdXproiP.xO55n5QcZk8eVe3ECUU2HNbf/Ga03d94O', 'binh27112004@gmail.com', '87sgMJHNXVEtXmXtsePgY1ncOzOh33VcV3KnsWALnfPFTavqUTbNWa7gGeCy', '2019-07-29 06:04:27', '2019-07-29 06:04:27', NULL);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -232,25 +238,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `ads`
 --
 ALTER TABLE `ads`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `ico`
 --
 ALTER TABLE `ico`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `icoactive`
 --
 ALTER TABLE `icoactive`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `icopool`
 --
 ALTER TABLE `icopool`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `migrations`

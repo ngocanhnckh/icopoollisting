@@ -66,6 +66,10 @@ class dashboard extends Controller
         if($req->password!=$req->repassword){
             return "Mật khẩu nhập lại không khớp. Bạn sẽ được chuyển hướng sau 5s<script>setTimeout(function(){window.location='".route('addacc')."'},5000);</script>";
         }
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 5s<script>setTimeout(function(){window.location='".route('dashboard')."'},5000);</script>";
+        }
+
         $admin=admin::find($id);
         $pass=$req->password;
         $name=$req->name;
@@ -180,12 +184,24 @@ class dashboard extends Controller
     }
     public function ico(){
         $admin=admin::all();
-        $trang='ico';
         $ico=ico::all();
+        if(Auth::user()->id!=1){
+            $ico=ico::all()->where('idngpost',Auth::user()->id);
+        }
+        $trang='ico';
+
         return view('dashboard.ico',compact('trang','admin','ico'));
     }
     public function xoaico($id){
+        if(Auth::check()==false){
+            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
         $ico=ico::find($id);
+        if(Auth::user()->id!=1){
+            if($ico->idngpost!=Auth::user()->id){
+            return "Không có quyền xoá. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+                }
+        }
         $icopool=icopool::all();
         $icopoolc=icopool::count();
         for($i=0;$i<$icopoolc;$i++){
@@ -202,14 +218,26 @@ class dashboard extends Controller
     }
     public function editico($id){
         $ico=ico::find($id);
+        if(Auth::user()->id!=1){
+            if($ico->idngpost!=Auth::user()->id){
+            return "Không có quyền Edit. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+                }
+        }
         $admin=admin::all();
         $trang='editico';
 
         return view('dashboard.editico',compact('trang','ico','admin'));
     }
     public function posteditico(Request $req,$id){
-
+        if(Auth::check()==false){
+            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
         $ico=ico::find($id);
+        if(Auth::user()->id!=1){
+            if($ico->idngpost!=Auth::user()->id){
+            return "Không có quyền Edit. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+                }
+        }
         $ico->name=         $req->name;
         $ico->Product=      $req->product;
         $ico->teamnpartner= $req->teamnpartner;
@@ -230,6 +258,9 @@ class dashboard extends Controller
         return view('dashboard.addico',compact('trang','ico','admin'));
     }
     public function postaddico(Request $req){
+        if(Auth::check()==false){
+            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
         $check=ico::all()->where('name',$req->name);
         if(count($check)>0) return"Đã Tồn tại Ico này. Bạn sẽ được chuyển hướng sau 5s<script>setTimeout(function(){window.location='".route('addico')."'},5000);</script>";
         $ico=new ico;
@@ -239,7 +270,7 @@ class dashboard extends Controller
         $ico->Market=       $req->market;
         $ico->average=      $req->average;
         $ico->Description=  $req->description;
-
+        $ico->idngpost = Auth::user()->id;
         $ico->slug=$this->to_slug($req->name);
         $ico->save();
         return redirect()->route('ico');
@@ -250,11 +281,12 @@ class dashboard extends Controller
 
         $admin=admin::all();
         $trang='icopool';
-        $icopool=icopool::all();
-        $icopoolc=icopool::count();
-
+        $icopool=icopool::all()->where('idngpost',Auth::user()->id);
+        if(Auth::user()->id==1)$icopool=icopool::all();
+        $icopoolc=sizeof($icopool);
         $activearr=[];$dem=0;
-        for($i=0;$i<$icopoolc;$i++){
+        foreach($icopool as $data){
+            $i=($data->id)-1;
             $activearr[$i]= $icopool[$i]->activeico;
             $dem++;
         }
@@ -262,13 +294,23 @@ class dashboard extends Controller
         return view('dashboard.icopool',compact('trang','admin','icopool','icoarr','activearr','dem'));
     }
     public function xoaicopool($id){
+        if(Auth::check()==false){
+            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
+
         $icopool=icopool::find($id);
+        if(Auth::user()->id!=1&&$icopool->idngpost!=Auth::user()->id){
+            return "Không có quyền xoá icopool này. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
         $icopool->delete();
         return redirect()->back();
     }
 
     public function editicopool($id){
         $icopool=icopool::find($id);
+        if(Auth::user()->id!=1&&$icopool->idngpost!=Auth::user()->id){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
         $admin=admin::all();
         $trang='editicopool';
         $activeico=$icopool->activeico;
@@ -280,8 +322,14 @@ class dashboard extends Controller
         return view('dashboard.editicopool',compact('trang','icopool','admin','activeico','icoarrstr'));
     }
     public function postediticopool(Request $req,$id){
+        if(Auth::check()==false){
+            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
 
         $icopool=icopool::find($id);
+        if(Auth::user()->id!=1&&$icopool->idngpost!=Auth::user()->id){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
         $icopool->name=                     $req->name;
         $icopool->activeico=                $req->activeico;
         $icopool->numofparticipants=        $req->numofparticipants;
@@ -299,7 +347,6 @@ class dashboard extends Controller
     }
 
     public function addicopool(){
-
         $admin=admin::all();
         $trang='addicopool';
         $icopool=icopool::all();
@@ -307,6 +354,9 @@ class dashboard extends Controller
         return view('dashboard.addicopool',compact('trang','admin','icopool','icoarrstr'));
     }
     public function postaddicopool(Request $req){
+        if(Auth::check()==false){
+            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
         $check=icopool::all()->where('name',$req->name);
         if(count($check)>0) return"Đã Tồn tại Pool này. Bạn sẽ được chuyển hướng sau 5s<script>setTimeout(function(){window.location='".route('addicopool')."'},5000);</script>";
         $icopool=new icopool;
@@ -326,11 +376,13 @@ class dashboard extends Controller
         return redirect()->route('icopool');
     }
     public function setico($slugpool,$slugico){
-
         $ic=$this->deslugico($slugico);
         $pool=$this->deslugpool($slugpool);
         $ico=ico::all()->where('name',$ic)->first();
         $icopool=icopool::all()->where('name',$pool)->first();
+        if(Auth::user()->id!=1&&$icopool->idngpost!=Auth::user()->id&&$ico->idngpost!=Auth::user()->id){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
         //check xem ico có active trong pool không
 
         if (strlen(strstr($icopool->activeico, $ic)) > 0) {
@@ -361,8 +413,15 @@ class dashboard extends Controller
 
     }
     public function postsetico(Request $req,$icopool,$ico){
+        if(Auth::check()==false){
+            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
             $icoactive=icoactive::all()->where('icopool',$icopool)->where('ico',$ico);
-
+            $checkico=ico::all()->where('name',$ico)->first();
+            $checkicopool=icopool::all()->where('name',$icopool)->first();
+         if(Auth::user()->id!=1&&$checkicopool->idngpost!=Auth::user()->id&&$checkico->idngpost!=Auth::user()->id){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
             if(count($icoactive)==0){
                 $newicoac=new icoactive;
                 $newicoac->icopool=$icopool;
@@ -388,19 +447,35 @@ class dashboard extends Controller
 
     }
      public function ads(){
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
         $admin=admin::all();
         $trang='ads';
         $ads=ads::all();
+        if(Auth::user()->id!=1){
 
+            $ads=ads::all()->where('idngpost',Auth::user()->id);
+
+        }
         return view('dashboard.ads',compact('trang','admin','ads'));
     }
     public function addads(){
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
         $ico=ico::all();
         $admin=admin::all();
         $trang='addico';
         return view('dashboard.addads',compact('trang','ico','admin'));
     }
     public function postaddads(Request $req){
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
+        if(Auth::check()==false){
+            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
         $filenamewithextension = $req->file('img')->getClientOriginalName();
 
         //get filename without extension
@@ -424,11 +499,24 @@ class dashboard extends Controller
         return redirect()->route('ads');
     }
     public function xoaads($id){
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
+        if(Auth::check()==false){
+            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
+
         $ads=ads::find($id);
+        if($ads->idngpost!=Auth::user()->id){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
         $ads->delete();
         return redirect()->back();
     }
     public function editads($id){
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
         $ico=ico::all();
         $admin=admin::all();
         $trang='addico';
@@ -436,6 +524,12 @@ class dashboard extends Controller
         return view('dashboard.editads',compact('trang','ico','admin','ads'));
     }
     public function posteditads(Request $req,$id){
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
+        if(Auth::check()==false){
+            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
         if($req->img==null){
             $ads=ads::find($id);
             $ads->name=$req->name;

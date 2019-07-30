@@ -107,6 +107,9 @@ Route::get('/dashboard/add-ads/',[
     'uses'=>'dashboard@addads',
     'as'=>'addads'
 ]);
+Route::post('/dashboard/add-ads/',[
+    'uses'=>'dashboard@postaddads'
+]);
 Route::get('/dashboard/xoa-ads/{id}',[
     'uses'=>'dashboard@xoaads',
     'as'=>'xoaads'
