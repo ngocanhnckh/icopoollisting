@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="kt-portlet">
-                <a href="{{route('ads')}}" class="form-text text-muted"><i class="flaticon2-back"></i> Back</a>
+                <a href="{{route('add-ads')}}" class="form-text text-muted"><i class="flaticon2-back"></i> Back</a>
                 <div class="kt-portlet__head">
                     <div class="kt-portlet__head-label">
                         <span class="kt-portlet__head-icon kt-hidden">
