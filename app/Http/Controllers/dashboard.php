@@ -370,7 +370,7 @@ class dashboard extends Controller
         $icopool->created=                  $req->created;
         $icopool->addr=                     $req->addr;
         $icopool->Description=              $req->description;
-
+        $icopool->idngpost = Auth::user()->id;
         $icopool->slug= $this->to_slug($req->name);
         $icopool->save();
         return redirect()->route('icopool');
@@ -495,6 +495,7 @@ class dashboard extends Controller
         $ads->nguoithue=$req->ngthue;
         $ads->tenhinh=$filenametostore;
         $ads->description=$req->description;
+        $ico->idngpost = Auth::user()->id;
         $ads->save();
         return redirect()->route('ads');
     }
