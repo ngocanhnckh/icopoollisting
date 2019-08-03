@@ -23,28 +23,28 @@
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">ICO NAME:</label>
                                 <div class="col-lg-4">
-                                    <input type="text" disabled="" class="form-control" placeholder="Enter ICO name" name="name" value="{{$ico->name}}">
+                                    <input type="text"  class="form-control" placeholder="Enter ICO name" name="name" value="{{$ico->name}}">
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">Product:</label>
                                 <div class="col-lg-4">
-                                    <input name="product" type="text" class="form-control" placeholder="Enter Product" value="{{$ico->Product}}">
+                                    <input name="product" type="number" class="form-control" placeholder="Enter Product" value="{{$ico->Product}}">
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">Team and partners:</label>
                                 <div class="col-lg-4">
-                                    <input name="teamnpartner" type="text" class="form-control" placeholder="Enter Team and partners" value="{{$ico->teamnpartner}}">
+                                    <input name="teamnpartner" type="number" class="form-control" placeholder="Enter Team and partners" value="{{$ico->teamnpartner}}">
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">Market:</label>
                                 <div class="col-lg-4">
-                                    <input name="market" type="text" class="form-control" placeholder="Enter Market" value="{{$ico->Market}}">
+                                    <input name="market" type="number" class="form-control" placeholder="Enter Market" value="{{$ico->Market}}">
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>

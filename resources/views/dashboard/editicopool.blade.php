@@ -75,7 +75,17 @@
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">Access:</label>
                                 <div class="col-lg-4">
-                                    <input name="access" type="text" class="form-control" placeholder="Enter Access" value="{{$icopool->access}}">
+                                    @if($icopool->access=="Lock")
+                                    <select class="form-control"  name="access">
+                                        <option  value="Unlock" >Unlock</option>
+                                        <option value="Lock" selected>Lock</option>
+                                    </select>
+                                    @else
+                                    <select class="form-control"  name="access">
+                                        <option  value="Unlock" selected>Unlock</option>
+                                        <option value="Lock" >Lock</option>
+                                    </select>
+                                    @endif
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>

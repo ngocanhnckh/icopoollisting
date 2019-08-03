@@ -10,6 +10,20 @@ use App\admin;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+
+//frontend
+Route::get('/',[
+    'uses'=>'home@index',
+    'as'=>'home'
+]);
+Route::get('/ico-detail/{slug}',[
+    'uses'=>'home@icodetail',
+    'as'=>'icodetail'
+]);
+
+//=====backend
 Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('uploadimg');
 Route::get('/admin-login', ['uses'=>'dashboard@login'])->name('admin-login');
 Route::post('/admin-login',[

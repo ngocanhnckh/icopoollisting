@@ -54,7 +54,7 @@
                                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">Re-Password:</label>
                                 <div class="col-lg-4">
-                                    <input  value="" name="repassword" type="password" required="" class="form-control" placeholder="Enter Password" >
+                                    <input  value="" name="repassword" type="password"class="form-control" placeholder="Enter Password" >
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>

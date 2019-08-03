@@ -75,7 +75,11 @@
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">Access:</label>
                                 <div class="col-lg-4">
-                                    <input name="access" type="text" class="form-control" placeholder="Enter Access" >
+                                    <select class="form-control"  name="access">
+                                        <option  value="Unlock">Unlock</option>
+                                        <option value="Lock">Lock</option>
+
+                                    </select>
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>

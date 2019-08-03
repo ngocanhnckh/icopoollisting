@@ -48,17 +48,26 @@
                         <tbody>
                             @foreach($icopool as $data)
                             <tr>
-                                <th scope="row">{{$data->id}}</th>
+                                <th scope="row" onpageshow="alert(1);">{{$data->id}}</th>
                                 <td>{{$data->name}}</td>
                                 <td><?php
                                     $i=$data->id-1;
                                     $str=$activearr[$i].',';$mid='';
                                     for($j=0;$j<strlen($str);$j++){
                                         if($str[$j]==','){
-                                            if($j!=strlen($str)-1){
-                                                echo "<a href='".route('setico', ['icopool'=>to_slug($icopool[$i]->name), 'ico'=>to_slug($mid)])."'>$mid, </a>";
+                                            $check=$icoactive->where('ico',$mid)->where('icopool',$data->name)->first();
+                                            if($check==''){
+                                                if($j!=strlen($str)-1){
+                                                    echo "<a title='You not set Min Cap, Bonus, ...' href='".route('setico', ['icopool'=>to_slug($data->name), 'ico'=>to_slug($mid)])."' class='text-danger'>$mid<i class='flaticon-warning-sign'></i>, </a>";
+                                                }
+                                                else echo "<a title='You not set Min Cap, Bonus, ...' href='".route('setico', ['icopool'=>to_slug($data->name), 'ico'=>to_slug($mid)])."' class='text-danger'>$mid<i class='flaticon-warning-sign'></i></a>";
                                             }
-                                            else echo "<a href='".route('setico', ['icopool'=>to_slug($icopool[$i]->name), 'ico'=>to_slug($mid)])."'>$mid</a>";
+                                            else{
+                                                if($j!=strlen($str)-1){
+                                                    echo "<a href='".route('setico', ['icopool'=>to_slug($data->name), 'ico'=>to_slug($mid)])."' >$mid, </a>";
+                                                }
+                                                else echo "<a href='".route('setico', ['icopool'=>to_slug($data->name), 'ico'=>to_slug($mid)])."'>$mid</a>";
+                                            }
                                             $mid='';
                                         }
                                         else if($str[$j]==' '&&$str[$j-1]==','){continue;}

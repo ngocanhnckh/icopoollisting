@@ -1,9 +1,3 @@
-@if(Auth::check()==false)
-<script type="text/javascript">
-window.location = "{{route('admin-login')}}";
-
-</script>
-@endif
 <!DOCTYPE html>
 <html lang="en">
 <!-- begin::Head -->
