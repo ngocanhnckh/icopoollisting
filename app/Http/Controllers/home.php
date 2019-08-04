@@ -52,4 +52,26 @@ class home extends Controller
 
         return view('home.icodetail',compact('title','icopool','activearr','icoactive','ico','ana','data'));
     }
+    public function pooldetail($slug){
+        $title='Icopools Detail';
+        $icopool=icopool::paginate(10);
+        $check=icopool::all();
+        $icoactive=icoactive::all();
+
+
+        $activearr=[];$dem=0;
+        foreach($check as $data){
+            $i=($data->id)-1;
+            $activearr[$i]= $data->activeico;
+            $dem++;
+        }
+        $ana=ico::orderBy('average','DESC')->get();
+        $admin=admin::find(1);
+        $admin->view=$admin->view+1;
+        $admin->save();
+        $data=icopool::all()->where('slug',$slug)->first();
+
+        return view('home.pooldetail',compact('title','icopool','activearr','icoactive','ico','ana','data'));
+    }
+
 }

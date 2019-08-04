@@ -58,7 +58,7 @@ td {
                                             <th>Bonus</th>
                                             <th>Commission</th>
                                             <th>Raised</th>
-                                            <th title="Team And Partner"><i class="flaticon2-user"></i></th>
+                                            <th title="Number of Participants"><i class="flaticon2-user"></i></th>
                                             <th>Rating</th>
                                             <th>Language</th>
                                             <th>Access</th>
@@ -183,13 +183,17 @@ td {
                     </div>
                     <div class="kt-portlet__body">
                         <!--begin::Section-->
-                        <div class="kt-section">
-                            <div class="kt-section__content" style="font-size: 120%;">
-                                <p class="float-left pb-3" > Product:<b>{{$data->Product}}/10</b></p><br>
-                                <p class="float-left pb-3" > Team and <br> partners:  <b>{{$data->teamnpartner}}/10</b></p><br>
-                                <p class="float-left pb-3" > Market:  <b>{{$data->Market}}/10</b></p><br>
-                                <b class="text-success">Average: {{$data->average}}/10</b>
-                            </div>
+                        <div class="kt-section" style="font-size: 120%; display: block;">
+                            <div class="container">
+                               <div class="row">
+                                   <div class="col-md-10 col-5">
+                                        <p class="float-left pb-3" > Product:<b>{{$data->Product}}/10</b></p><br>
+                                        <p class="float-left pb-3" > Team and <br> partners:  <b>{{$data->teamnpartner}}/10</b></p><br>
+                                        <p class="float-left pb-3" > Market:  <b>{{$data->Market}}/10</b></p><br>   <Br>
+                                        <b class="text-success"> Average: {{$data->average}} / 10</b>
+                                    </div>
+                                   </div>
+                               </div>
                         </div>
                         <!--end::Section-->
                     </div>

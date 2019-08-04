@@ -71,7 +71,7 @@
             text-decoration: underline;
         }
     </style>
-    <link rel="shortcut icon" href="./assets/media/logos/favicon.ico" />
+    <link rel="shortcut icon" href="{{asset('public/thumnailimg')}}/{{$thumnail}}" />
 </head>
 <!-- end::Head -->
 <!-- begin::Body -->
@@ -81,8 +81,8 @@
     <!-- begin:: Header Mobile -->
     <div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
         <div class="kt-header-mobile__logo">
-            <a href="demo1/index.html">
-                <img alt="Logo" src="./assets/media/logos/logo-light.png" />
+            <a href="{{route('home')}}">
+                <h2 style="color: white;">ICOPOOLS</h2>
             </a>
         </div>
         <div class="kt-header-mobile__toolbar">
@@ -101,8 +101,8 @@
                     <div class="kt-header-menu-wrapper" id="kt_header_menu_wrapper">
                         <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile  kt-header-menu--layout-default ">
                             <div class="kt-header-mobile__logo">
-                                <a href="demo1/index.html">
-                                    <img class="logo-img-cls" alt="Logo" src="https://staticaltmetric.s3.amazonaws.com/uploads/2015/12/Altmetric_rgb.png">
+                                <a href="{{route('home')}}">
+                                    <img class="logo-img-cls" alt="Logo" src="{{asset('public/logoimg')}}/{{$logo}}">
                                 </a>
                             </div>
                             <style>
@@ -112,7 +112,7 @@
                                 <li class="indent"></li>
                                 <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel kt-menu__item--active"><a href="./" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">Home</span></a>
                                 </li>
-                                <li  class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel"><a href="http://google.com" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">Features</span></a>
+                                <li  class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel"><a href="http://google.com" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">Blog</span></a>
                                 </li>
                                 @if(Auth::check()==true)
                                 <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" onclick="window.location='{{route('dashboard')}}'"><a href="{{route('dashboard')}}" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">Dashboard</span></a>
@@ -149,8 +149,8 @@
                         <div class="kt-header__topbar-item kt-header__topbar-item--user">
                             <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="0px,0px">
                                 <div class="kt-header__topbar-user">
-                                    <span class="kt-header__topbar-welcome kt-hidden-mobile">Hi,</span>
-                                    <span class="kt-header__topbar-username kt-hidden-mobile">{{Auth::user()->name}}</span>
+                                    <span class="kt-header__topbar-welcome ">Hi,</span>
+                                    <span class="kt-header__topbar-username">{{Auth::user()->name}}</span>
                                     <img class="kt-hidden" alt="Pic" src="./assets/media/users/300_25.jpg" />
                                     <!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
                                     <span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">{{Auth::user()->name[0]}}</span>

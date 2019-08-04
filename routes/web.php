@@ -22,8 +22,26 @@ Route::get('/ico-detail/{slug}',[
     'uses'=>'home@icodetail',
     'as'=>'icodetail'
 ]);
+Route::get('/icopools-detail/{slug}',[
+    'uses'=>'home@pooldetail',
+    'as'=>'pooldetail'
+]);
 
 //=====backend
+//logo
+Route::get('/dashboard/logo', ['uses'=>'dashboard@logo'])->name('logo');
+Route::post('/dashboard/logo', ['uses'=>'dashboard@postlogo']);
+//endlogo
+
+//blog
+Route::get('/dashboard/blog', ['uses'=>'dashboard@blog'])->name('blog');
+Route::get('/dashboard/blog/add', ['uses'=>'dashboard@addblog'])->name('addblog');
+Route::post('/dashboard/blog/add', ['uses'=>'dashboard@postaddblog']);
+Route::get('/dashboard/blog/xoa/{id}', ['uses'=>'dashboard@xoablog'])->name('xoablog');
+
+Route::get('/dashboard/blog/edit/{id}', ['uses'=>'dashboard@editblog'])->name('editblog');
+Route::post('/dashboard/blog/edit/{id}', ['uses'=>'dashboard@posteditblog']);
+//endblog
 Route::post('ckeditor/image_upload', 'CKEditorController@upload')->name('uploadimg');
 Route::get('/admin-login', ['uses'=>'dashboard@login'])->name('admin-login');
 Route::post('/admin-login',[

@@ -91,7 +91,7 @@ function to_slug($str) {
                                                 </thead>
                                                 <tbody>
                                                     @foreach($icopool as $data)
-                                                    <tr>
+                                                    <tr onclick="window.location='{{route('pooldetail',to_slug($data->name))}}'" class="pointer">
 
                                                         <td valign="middle">{{$data->name}}</td>
                                                         <td valign="middle">
