@@ -717,7 +717,10 @@ public function postlogo(Request $req){
         }
         $blog=new blog;
         $blog->title=$req->title;
+        $blog->motangan=$req->short;
         $blog->tag=$req->tag;
+        $blog->slug=($this->to_slug($req->title)).time();
+        $blog->view=0;
         $blog->content=$req->content;
         $filenamewithextension = $req->file('img')->getClientOriginalName();
 
@@ -769,6 +772,8 @@ public function postlogo(Request $req){
         }
 
         $blog=blog::find($id);
+        $blog->slug=($this->to_slug($req->title)).time();
+        $blog->motangan=$req->short;
         $blog->title=$req->title;
         $blog->tag=$req->tag;
         $blog->content=$req->content;

@@ -4,6 +4,7 @@
 <!-- begin::Head -->
 
 <head>
+
     <base href="{{asset('public/dashboard')}}/">
     <!--begin::Base Path (base relative path for assets of this page) -->
     <!--end::Base Path -->
@@ -100,7 +101,7 @@
                     <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn"><i class="la la-close"></i></button>
                     <div class="kt-header-menu-wrapper" id="kt_header_menu_wrapper">
                         <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile  kt-header-menu--layout-default ">
-                            <div class="kt-header-mobile__logo">
+                            <div class="kt-header-mobile__logo mr-2 ">
                                 <a href="{{route('home')}}">
                                     <img class="logo-img-cls" alt="Logo" src="{{asset('public/logoimg')}}/{{$logo}}">
                                 </a>
@@ -109,10 +110,12 @@
                                 li.indent{ padding-left: 1.8em }
                                 </style>
                             <ul class="kt-menu__nav ">
-                                <li class="indent"></li>
-                                <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel kt-menu__item--active"><a href="./" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">Home</span></a>
+
+
+                                <li onclick="window.location='{{route('home')}}';"  class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel @if($title!='Blog') kt-menu__item--active @endif"><a href="#" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">Home</span></a>
                                 </li>
-                                <li  class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel"><a href="http://google.com" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">Blog</span></a>
+
+                                <li onclick="window.location='{{route('trangblog')}}';"  class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel @if($title=='Blog') kt-menu__item--active @endif"><a href="#" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">Blog</span></a>
                                 </li>
                                 @if(Auth::check()==true)
                                 <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" onclick="window.location='{{route('dashboard')}}'"><a href="{{route('dashboard')}}" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">Dashboard</span></a>

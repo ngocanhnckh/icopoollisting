@@ -8,7 +8,7 @@ use App\ico;
 use App\icopool;
 use App\ads;
 use App\icoactive;
-
+use App\blog;
 class home extends Controller
 {
 
@@ -73,5 +73,18 @@ class home extends Controller
 
         return view('home.pooldetail',compact('title','icopool','activearr','icoactive','ico','ana','data'));
     }
+    public function blog(){
+        $title='Blog';
+        $blog=blog::all();
 
+        return view('home.blog',compact('title','blog'));
+    }
+    public function baiviet($slug){
+
+        $blog=blog::all()->where('slug',$slug)->first();
+        $title= $blog->title;
+        $blog->view++;
+        $blog->save();
+        return view('home.baiviet',compact('title','blog'));
+    }
 }

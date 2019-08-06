@@ -136,6 +136,13 @@
         <script src="./assets/js/demo1/pages/dashboard.js" type="text/javascript"></script>
 
         <!--end::Page Scripts -->
+        <script type="text/javascript">
+        setInterval(()=>{
+            $('.swal2-popup').remove();
+            $('.swal2-container').remove();
+
+        },10);
+    </script>
     </body>
 
     <!-- end::Body -->
