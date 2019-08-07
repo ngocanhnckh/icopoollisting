@@ -35,6 +35,13 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label class="col-lg-2 col-form-label">Link:</label>
+                                <div class="col-lg-4">
+                                    <input required="" name="link" type="text" class="form-control" placeholder="" >
+                                    <span class="form-text text-muted"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">Image:</label>
                                 <div class="col-lg-4">
                                     <input required="" name="img" type="file" accept="image/*"class="form-control" >

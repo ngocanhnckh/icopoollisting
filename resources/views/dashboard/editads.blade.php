@@ -34,6 +34,13 @@
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label">Link:</label>
+                                <div class="col-lg-4">
+                                    <input required="" value="{{$ads->link}}" name="link" type="text" class="form-control" placeholder="" >
+                                    <span class="form-text text-muted"></span>
+                                </div>
+                            </div>
                             <p class="text-muted" >If don't change Image Please don't click here</p>
                             <div class="form-group row">
 

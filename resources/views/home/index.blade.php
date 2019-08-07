@@ -16,24 +16,33 @@ function to_slug($str) {
         }
 ?>
 <style type="text/css">
-    td{
-        line-height: 2.2em;
-    }
-    .table td,.table th {
-   text-align: center;
-}
-.table > tbody > tr > td,.table > thead > tr > th {
-     vertical-align: middle;
+td {
+    line-height: 2.2em;
 }
 
-#kt_wrapper > div.kt-grid__item.kt-grid__item--fluid.kt-grid.kt-grid--hor > div > div > div.col-md-8 > div > div.kt-portlet__body > ul > li> a.active{
+.table td,
+.table th {
+    text-align: center;
+}
+
+.table>tbody>tr>td,
+.table>thead>tr>th {
+    vertical-align: middle;
+}
+
+#kt_wrapper>div.kt-grid__item.kt-grid__item--fluid.kt-grid.kt-grid--hor>div>div>div.col-md-8>div>div.kt-portlet__body>ul>li>a.active {
     background: linear-gradient(to right, #36d1dc 0%, #5b86e5 100%);
 }
-.kt-portlet{
+
+.kt-portlet {
     overflow-x: auto;
 }
-.pointer:hover{
+
+.pointer:hover {
     cursor: pointer;
+}
+.carousel-indicators li{
+    background-color: black;
 }
 </style>
 <!-- end:: Header -->
@@ -43,24 +52,36 @@ function to_slug($str) {
     <!-- begin:: Content -->
     <div class="container-fluid no-padding">
         <div class="row">
-            <div class="col-md-2">        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                        </ol>
-                        <div class="carousel-inner" role="listbox">
-                            <div class="carousel-item active">
-                                <img data-src="{{asset('public/uploadads')}}/Huong dan Hoc gioi song tot 2019 (2)_1564324756.jpeg" alt="First slide">
-                            </div>
-                        </div>
-                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                            <span class="icon-prev" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                            <span class="icon-next" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </div></div>
+            <div class="col-md-2">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <?php $dem=0; ?>
+    @foreach($ads as $data)
+    <li data-target="#carouselExampleIndicators @if($dem==0) active  @endif" data-slide-to="{{$dem}}" ></li>
+    <?php $dem++; ?>
+@endforeach
+  </ol>
+  <div class="carousel-inner">
+    <?php $dem=0;?>
+    @foreach($ads as $data)
+    <div class="carousel-item @if($dem==0) active  @endif">
+      <a href="{{$data->link}}" target="_blank"><img class="d-block w-100" src="{{asset('public/uploadads')}}/{{$data->tenhinh}}" ></a>
+    </div>
+    <?php $dem++; ?>
+    @endforeach
+
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+            </div>
             <div class="col-md-8">
                 <div class="kt-portlet">
                     <div class="kt-portlet__head">
@@ -89,7 +110,7 @@ function to_slug($str) {
                                     <div class="kt-section">
                                         <div class="kt-section__content">
                                             <table class="table table-bordered table-hover">
-                                                <thead >
+                                                <thead>
                                                     <tr>
                                                         <th>ICO Pool Name</th>
                                                         <th>Active Ico</th>
@@ -109,7 +130,6 @@ function to_slug($str) {
                                                 <tbody>
                                                     @foreach($icopool as $data)
                                                     <tr onclick="window.location='{{route('pooldetail',to_slug($data->name))}}'" class="pointer">
-
                                                         <td valign="middle">{{$data->name}}</td>
                                                         <td valign="middle">
                                                             <?php
@@ -129,7 +149,8 @@ function to_slug($str) {
                                                             }
                                                             ?>
                                                         </td>
-                                                        <td valign="middle"><?php
+                                                        <td valign="middle">
+                                                            <?php
 
                                                             for($i=0;$i<$dem;$i++){
                                                                 $active=$icoactive->where('icopool',$data->name)->where('ico',$icoarr[$i])->first();
@@ -139,31 +160,38 @@ function to_slug($str) {
                                                                     else
                                                                 echo $active->mincap."<br>";
                                                             }
-                                                        ?></td>
-                                                        <td valign="middle"><?php for($i=0;$i<$dem;$i++){
+                                                        ?>
+                                                        </td>
+                                                        <td valign="middle">
+                                                            <?php for($i=0;$i<$dem;$i++){
                                                             $active=$icoactive->where('icopool',$data->name)->where('ico',$icoarr[$i])->first();
                                                             if($active==''){
                                                                     echo"<br>";
                                                                 }
                                                                     else
                                                                 echo $active->bonus."<br>";
-                                                            } ?></td>
-                                                        <td valign="middle"><?php for($i=0;$i<$dem;$i++){
+                                                            } ?>
+                                                        </td>
+                                                        <td valign="middle">
+                                                            <?php for($i=0;$i<$dem;$i++){
                                                             $active=$icoactive->where('icopool',$data->name)->where('ico',$icoarr[$i])->first();
                                                             if($active==''){
                                                                     echo"<br>";
                                                                 }
                                                                     else
                                                                 echo $active->comm."<br>";
-                                                            } ?></td>
-                                                        <td valign="middle"><?php for($i=0;$i<$dem;$i++){
+                                                            } ?>
+                                                        </td>
+                                                        <td valign="middle">
+                                                            <?php for($i=0;$i<$dem;$i++){
                                                             $active=$icoactive->where('icopool',$data->name)->where('ico',$icoarr[$i])->first();
                                                             if($active==''){
                                                                     echo"<br>";
                                                                 }
                                                                     else
                                                                 echo $active->raised."<br>";
-                                                            } ?></td>
+                                                            } ?>
+                                                        </td>
                                                         <td valign="middle">{{$data->numofparticipants}}</td>
                                                         <td valign="middle">{{$data->tok_distr}}</td>
                                                         <td valign="middle">{{$data->rating}}</td>
@@ -187,9 +215,8 @@ function to_slug($str) {
                                     <div class="kt-section">
                                         <div class="kt-section__content">
                                             <table class="table table-bordered table-hover">
-                                                <thead >
+                                                <thead>
                                                     <tr>
-
                                                         <th>ICO</th>
                                                         <th>ICO Pools</th>
                                                         <th>Min Cap</th>
@@ -208,9 +235,8 @@ function to_slug($str) {
                                                 <tbody>
                                                     @foreach($ico as $data)
                                                     <tr onclick="window.location='{{route('icodetail',to_slug($data->name))}}'" class="pointer">
-
-                                                        <td >{{$data->name}}</td>
-                                                        <td >
+                                                        <td>{{$data->name}}</td>
+                                                        <td>
                                                             <?php
                                                             $dem=0;$poolarr=[];
                                                             for($i=0;$i< count($icopool);$i++){
@@ -225,7 +251,8 @@ function to_slug($str) {
 
                                                             ?>
                                                         </td>
-                                                        <td ><?php
+                                                        <td>
+                                                            <?php
 
                                                             for($i=0;$i<$dem;$i++){
                                                             $active=$icoactive->where('icopool',$poolarr[$i])->where('ico',$data->name)->first();
@@ -235,84 +262,104 @@ function to_slug($str) {
                                                                     else
                                                                 echo $active->mincap."<br>";
                                                             }
-                                                        ?></td>
-                                                        <td ><?php for($i=0;$i<$dem;$i++){
+                                                        ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php for($i=0;$i<$dem;$i++){
                                                            $active=$icoactive->where('icopool',$poolarr[$i])->where('ico',$data->name)->first();
                                                             if($active==''){
                                                                     echo"<br>";
                                                                 }
                                                                     else
                                                                 echo $active->bonus."<br>";
-                                                            } ?></td>
-                                                        <td ><?php for($i=0;$i<$dem;$i++){
+                                                            } ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php for($i=0;$i<$dem;$i++){
                                                             $active=$icoactive->where('icopool',$poolarr[$i])->where('ico',$data->name)->first();
                                                             if($active==''){
                                                                     echo"<br>";
                                                                 }
                                                                     else
                                                                 echo $active->comm."<br>";
-                                                            } ?></td>
-                                                        <td ><?php for($i=0;$i<$dem;$i++){
+                                                            } ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php for($i=0;$i<$dem;$i++){
                                                             $active=$icoactive->where('icopool',$poolarr[$i])->where('ico',$data->name)->first();
                                                             if($active==''){
                                                                     echo"<br>";
                                                                 }
                                                                     else
                                                                 echo $active->raised."<br>";
-                                                            } ?></td>
-                                                        <td ><?php
+                                                            } ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php
                                                         for($i=0;$i<$dem;$i++){
                                                             $pool1=$icopool->where('name',$poolarr[$i])->first();
                                                             echo $pool1->numofparticipants."<br>";
                                                         }
 
-                                                        ?></td>
-                                                        <td><?php
+                                                        ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php
                                                         for($i=0;$i<$dem;$i++){
                                                             $pool1=$icopool->where('name',$poolarr[$i])->first();
                                                             echo $pool1->tok_distr."<br>";
                                                         }
 
-                                                        ?></td>
-                                                        <td ><?php
+                                                        ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php
                                                         for($i=0;$i<$dem;$i++){
                                                             $pool1=$icopool->where('name',$poolarr[$i])->first();
                                                             echo $pool1->rating."<br>";
                                                         }
 
-                                                        ?></td>
-                                                        <td ><?php
+                                                        ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php
                                                         for($i=0;$i<$dem;$i++){
                                                             $pool1=$icopool->where('name',$poolarr[$i])->first();
                                                             echo $pool1->lang."<br>";
                                                         }
 
-                                                        ?></td>
-                                                        <td ><?php
+                                                        ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php
                                                         for($i=0;$i<$dem;$i++){
                                                             $pool1=$icopool->where('name',$poolarr[$i])->first();
                                                             echo $pool1->access."<br>";
                                                         }
 
-                                                        ?></td>
-                                                        <td ><?php
+                                                        ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php
                                                         for($i=0;$i<$dem;$i++){
                                                             $pool1=$icopool->where('name',$poolarr[$i])->first();
                                                             echo $pool1->created."<br>";
                                                         }
 
-                                                        ?></td>
-                                                        <td ><?php
+                                                        ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php
                                                         for($i=0;$i<$dem;$i++){
                                                             $pool1=$icopool->where('name',$poolarr[$i])->first();
                                                             echo "<a href='".$pool1->addr."'target='_blank'><i style='font-size: 150%;' class='flaticon2-paperplane'></i></a><br>";
                                                         }
-                                                        ?></td>
+                                                        ?>
+                                                        </td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
                                             </table>
-
                                         </div>
                                     </div>
                                     <!--end::Section-->
@@ -324,9 +371,8 @@ function to_slug($str) {
                                     <div class="kt-section">
                                         <div class="kt-section__content">
                                             <table class="table table-bordered table-hover">
-                                                <thead >
+                                                <thead>
                                                     <tr>
-
                                                         <th>ICO Name</th>
                                                         <th>Product</th>
                                                         <th>Team and partners</th>
@@ -336,7 +382,7 @@ function to_slug($str) {
                                                 </thead>
                                                 <tbody>
                                                     @foreach($ana as $data)
-                                                    <tr onclick="window.location='{{route('icodetail',to_slug($data->name))}}'" class="pointer"  >
+                                                    <tr onclick="window.location='{{route('icodetail',to_slug($data->name))}}'" class="pointer">
                                                         <td valign="middle">{{$data->name}}</td>
                                                         <td valign="middle">{{$data->Product}}</td>
                                                         <td valign="middle">{{$data->teamnpartner}}</td>
@@ -344,15 +390,14 @@ function to_slug($str) {
                                                         @if($data->average>=7)
                                                         <td valign="middle " style="color:green;">{{$data->average}} / 10</td>
                                                         @elseif($data->average<7&&$data->average>=5)
-                                                        <td valign="middle" style="color:#cd9f12;">{{$data->average}} / 10</td>
-                                                        @else
-                                                        <td valign="middle" style="color:red;">{{$data->average}} / 10</td>
-                                                        @endif
+                                                            <td valign="middle" style="color:#cd9f12;">{{$data->average}} / 10</td>
+                                                            @else
+                                                            <td valign="middle" style="color:red;">{{$data->average}} / 10</td>
+                                                            @endif
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
                                             </table>
-
                                         </div>
                                     </div>
                                     <!--end::Section-->
@@ -362,9 +407,36 @@ function to_slug($str) {
                     </div>
                 </div>
             </div>
-            <div class="col-md-2"></div>
-        </div>
+            <div class="col-md-2">
+                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <?php $dem=0; ?>
+    @foreach($ads as $data)
+    <li data-target="#carouselExampleIndicators @if($dem==0) active  @endif" data-slide-to="{{$dem}}" ></li>
+    <?php $dem++; ?>
+@endforeach
+  </ol>
+  <div class="carousel-inner">
+    <?php $dem=0;?>
+    @foreach($ads as $data)
+    <div class="carousel-item @if($dem==0) active  @endif">
+      <a href="{{$data->link}}" target="_blank"><img class="d-block w-100" src="{{asset('public/uploadads')}}/{{$data->tenhinh}}" ></a>
+    </div>
+    <?php $dem++; ?>
+    @endforeach
 
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+            </div>
+        </div>
     </div>
     <!-- end:: Content -->
 </div>

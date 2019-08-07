@@ -29,7 +29,8 @@ class home extends Controller
         $admin->view=$admin->view+1;
         $admin->save();
         //dd($activearr);
-        return view('home.index',compact('title','icopool','activearr','icoactive','ico','ana'));
+        $ads=ads::all();
+        return view('home.index',compact('title','icopool','activearr','icoactive','ico','ana','ads'));
     }
     public function icodetail($slug){
         $title='Ico Detail';

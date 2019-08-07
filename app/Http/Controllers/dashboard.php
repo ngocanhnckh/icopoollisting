@@ -615,6 +615,7 @@ public function postlogo(Request $req){
         $ads->tenhinh=$filenametostore;
         $ads->description=$req->description;
         $ads->idngpost = Auth::user()->id;
+        $ads->link=$req->link;
         $ads->save();
         return redirect()->route('ads');
     }
@@ -659,6 +660,7 @@ public function postlogo(Request $req){
             $ads->name=$req->name;
             $ads->nguoithue=$req->ngthue;
             $ads->description=$req->description;
+            $ads->link=$req->link;
             $ads->save();
             return redirect()->route('ads');
         }
@@ -681,6 +683,7 @@ public function postlogo(Request $req){
             $ads->nguoithue=$req->ngthue;
             $ads->tenhinh=$filenametostore;
             $ads->description=$req->description;
+            $ads->link=$req->link;
             $ads->save();
             return redirect()->route('ads');
     }
