@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th8 04, 2019 lúc 05:45 PM
+-- Thời gian đã tạo: Th8 07, 2019 lúc 04:19 PM
 -- Phiên bản máy phục vụ: 10.1.36-MariaDB
 -- Phiên bản PHP: 7.2.11
 
@@ -34,16 +34,17 @@ CREATE TABLE `ads` (
   `nguoithue` varchar(254) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tenhinh` varchar(254) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(254) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `idngpost` int(11) NOT NULL
+  `idngpost` int(11) NOT NULL,
+  `link` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `ads`
 --
 
-INSERT INTO `ads` (`id`, `name`, `nguoithue`, `tenhinh`, `description`, `idngpost`) VALUES
-(1, 'Kymco 50cc', 'bình', 'Huong dan Hoc gioi song tot 2019 (2)_1564324756.jpeg', '<p>abc</p>', 1),
-(3, 'test', 'test', 'WIN_20190123_08_39_13_Pro_1564482354.jpg', NULL, 1);
+INSERT INTO `ads` (`id`, `name`, `nguoithue`, `tenhinh`, `description`, `idngpost`, `link`) VALUES
+(1, 'Kymco 50cc', 'bình', 'Huong dan Hoc gioi song tot 2019 (2)_1564324756.jpeg', '<p>abc</p>', 1, 'http://bing.com'),
+(3, 'test', 'test', 'WIN_20190123_08_39_13_Pro_1564482354.jpg', NULL, 1, 'https://fb.com');
 
 -- --------------------------------------------------------
 
@@ -57,16 +58,20 @@ CREATE TABLE `blog` (
   `tag` varchar(254) COLLATE utf8mb4_unicode_ci NOT NULL,
   `img` varchar(254) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `content` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `view` bigint(20) NOT NULL,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `updated_at` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `updated_at` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `motangan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `blog`
 --
 
-INSERT INTO `blog` (`id`, `title`, `tag`, `img`, `content`, `created_at`, `updated_at`) VALUES
-(3, 'test', 'binh, dep, trai, vl', NULL, '<p>xxx</p>', '2019-08-04 12:07:14', '2019-08-04 12:07:34');
+INSERT INTO `blog` (`id`, `title`, `tag`, `img`, `content`, `view`, `slug`, `created_at`, `updated_at`, `motangan`) VALUES
+(4, 'First Blog', 'Binh, Dep, Trai, Vl', 'RobloxScreenShot20190529_094121528_1565010009.png', '<p>My first Blog in this website</p>', 22, 'first-blog1565014018', '2019-08-05 13:00:10', '2019-08-07 14:00:49', 'This Is the first blog in this web'),
+(5, 'test', 'abc, xyz, ghi', 'Screenshot (3)_1565097067.png', '<p>this is testing&nbsp;</p>', 4, 'test1565097067', '2019-08-06 13:11:07', '2019-08-07 13:58:31', 'this is testing');
 
 -- --------------------------------------------------------
 
@@ -235,7 +240,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `password`, `email`, `remember_token`, `created_at`, `updated_at`, `view`) VALUES
-(1, 'Admin', 'admin', '$2y$10$TPL/ltSJEWekpf7CLXW86eK01hPr8qVIFCYe4FuXBd.OGmmWEnDum', 'admin@gmail.com', 'XeNNlAYcAAOQ5zWr8g07EHklVZhqtenqKAK6BcdbWwAtRNe6lveGiZaNH01M', NULL, '2019-08-04 04:53:59', 350),
+(1, 'Admin', 'admin', '$2y$10$TPL/ltSJEWekpf7CLXW86eK01hPr8qVIFCYe4FuXBd.OGmmWEnDum', 'admin@gmail.com', 'XeNNlAYcAAOQ5zWr8g07EHklVZhqtenqKAK6BcdbWwAtRNe6lveGiZaNH01M', NULL, '2019-08-07 07:00:17', 442),
 (3, 'Bình', 'binh', '$2y$10$UE2lvoiQaa/fbHP33lr4.u31XtBsntGs3ieod8rx.TEDiKdxvjI5W', 'binh271120@f.f', NULL, '2019-08-02 02:53:18', '2019-08-02 02:53:18', NULL);
 
 --
@@ -304,7 +309,7 @@ ALTER TABLE `ads`
 -- AUTO_INCREMENT cho bảng `blog`
 --
 ALTER TABLE `blog`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `ico`
