@@ -110,7 +110,7 @@
 										<div class="kt-portlet__head kt-portlet__space-x">
 											<div class="kt-portlet__head-label">
 												<h3 class="kt-portlet__head-title">
-													Tổng số lượt view web:
+													Web views:
 												</h3>
 											</div>
 											<div class="kt-portlet__head-toolbar">

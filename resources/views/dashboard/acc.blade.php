@@ -25,7 +25,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <p>Do pass đã được mã hoá để chống hack nên pass sẽ không hiện ra</p>
+                        <p>Password wont be shown as it's encrypted</p>
                             @foreach($admin as $data)
                             <tr>
                                 <th scope="row">{{$data->id}}</th>

@@ -24,17 +24,26 @@
   height: auto;
     }
 </style>
-<div class="container mb-5 " style="padding-bottom: 4.3rem;">
-    <div class="row">
+<div class="kt-portlet kt-portlet--height-fluid">
+                                        <div class="kt-portlet__head">
+                                            <div class="kt-portlet__head-label">
+                                                <h3 class="kt-portlet__head-title">
+                                                    <a href="{{route('trangblog')}}"><i class="flaticon2-back"></i>Back</a>
+                                                </h3>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="kt-portlet__body kt-portlet__body--fluid">
+                                           <div class="row">
         <div class="col-12">
-            <a href="{{route('trangblog')}}"><i class="flaticon2-back"></i>Back</a>
+            
             <br>
 
             <h1 class="pt-5">{{$blog->title}}</h1>.
             <img class="resize" src="{{asset('public/thumbnailblog')}}/{{$blog->img}}" />
             <h3><i class="flaticon-eye"></i> {{$blog->view}}</h3>
-            <h5>Đăng vào ngày {{$blog->created_at}}</h5>
-            <h5>Cập nhật lần cuối {{$blog->updated_at}}</h5>
+            <h5>Posted in {{$blog->created_at}}</h5>
+            <h5>Last update {{$blog->updated_at}}</h5>
             <hr>
             <div class="container">
                 <div class="row">
@@ -43,5 +52,8 @@
             </div>
         </div>
     </div>
-</div>
+                                        </div>
+                                    </div>
+
+
 @endsection

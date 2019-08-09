@@ -17,6 +17,7 @@
         padding-top: 0;
     }
 </style>
+
 <div class="container mb-5 " style="padding-bottom: 4.3rem;">
     <div class="row">
         <div class="col-12">
@@ -34,7 +35,7 @@
                                     <p class="card-text"><span>
                                     {{$data->motangan}}
                                     </span><span style="font-size: 150%; display: inline;">...</span></p>
-                                    <a href="{{route('baiviet',$data->slug)}}" class="btn btn-primary">Xem ngay</a>
+                                    <a href="{{route('baiviet',$data->slug)}}" class="btn btn-primary">View more</a>
                                 </div>
                             </div>
                     </div>
