@@ -4,9 +4,9 @@
                             2019&nbsp;&copy;&nbsp;<a href="http://keenthemes.com/metronic" target="_blank" class="kt-link">Keenthemes</a>
                         </div>
                         <div class="kt-footer__menu">
-                            <a href="http://keenthemes.com/metronic" target="_blank" class="kt-footer__menu-link kt-link">About</a>
-                            <a href="http://keenthemes.com/metronic" target="_blank" class="kt-footer__menu-link kt-link">Team</a>
-                            <a href="http://keenthemes.com/metronic" target="_blank" class="kt-footer__menu-link kt-link">Contact</a>
+                            <a href="{{route('home')}}" target="_blank" class="kt-footer__menu-link kt-link">Home</a>
+                            <a href="{{route('trangblog')}}" target="_blank" class="kt-footer__menu-link kt-link">Blog</a>
+                            
                         </div>
                     </div>
 
