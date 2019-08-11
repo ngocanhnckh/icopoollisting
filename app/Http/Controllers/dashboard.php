@@ -776,6 +776,7 @@ public function postlogo(Request $req){
 
         $blog=blog::find($id);
         $blog->slug=($this->to_slug($req->title)).time();
+        //dd($req->short);
         $blog->motangan=$req->short;
         $blog->title=$req->title;
         $blog->tag=$req->tag;

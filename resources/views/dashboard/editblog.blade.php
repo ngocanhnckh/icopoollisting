@@ -18,7 +18,7 @@
                             <i class="la la-gear"></i>
                         </span>
                         <h3 class="kt-portlet__head-title">
-                            Add new ICO pool
+                            Add new Blog
                         </h3>
                     </div>
                 </div>
@@ -37,6 +37,12 @@
                                 <label class="col-lg-2 col-form-label">Tag:</label>
                                 <div class="col-lg-4">
                                     <input type="text" placeholder="Add Tag" name="tag" id="cate" >
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label">Short description:</label>
+                                <div class="col-lg-4">
+                                    <input type="text" required="" value="{{$blog->motangan}}" class="form-control" placeholder="Add Title for the news" name="short" >
                                 </div>
                             </div>
                             <div class="form-group row">

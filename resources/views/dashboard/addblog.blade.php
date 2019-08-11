@@ -35,7 +35,7 @@
                             <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">Tag:</label>
                                 <div class="col-lg-4">
-                                    <input type="text" placeholder="Add Tag" name="tag" id="cate" >
+                                    <input type="text" required="" placeholder="Add Tag" name="tag" id="cate" >
                                 </div>
                             </div>
                             <div class="form-group row">
