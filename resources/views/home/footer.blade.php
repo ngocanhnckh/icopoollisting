@@ -6,7 +6,7 @@
                         <div class="kt-footer__menu">
                             <a href="{{route('home')}}" target="_blank" class="kt-footer__menu-link kt-link">Home</a>
                             <a href="{{route('trangblog')}}" target="_blank" class="kt-footer__menu-link kt-link">Blog</a>
-                            
+
                         </div>
                     </div>
 
@@ -54,7 +54,7 @@
         <!-- end::Global Config -->
 
         <!--begin:: Global Mandatory Vendors -->
-        <script src="./assets/vendors/general/jquery/dist/jquery.js" type="text/javascript"></script>
+
         <script src="./assets/vendors/general/popper.js/dist/umd/popper.js" type="text/javascript"></script>
         <script src="./assets/vendors/general/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="./assets/vendors/general/js-cookie/src/js.cookie.js" type="text/javascript"></script>
@@ -111,13 +111,12 @@
         <script src="./assets/vendors/general/waypoints/lib/jquery.waypoints.js" type="text/javascript"></script>
         <script src="./assets/vendors/general/counterup/jquery.counterup.js" type="text/javascript"></script>
         <script src="./assets/vendors/general/es6-promise-polyfill/promise.min.js" type="text/javascript"></script>
-        <script src="./assets/vendors/general/sweetalert2/dist/sweetalert2.min.js" type="text/javascript"></script>
-        <script src="./assets/vendors/custom/js/vendors/sweetalert2.init.js" type="text/javascript"></script>
+
         <script src="./assets/vendors/general/jquery.repeater/src/lib.js" type="text/javascript"></script>
         <script src="./assets/vendors/general/jquery.repeater/src/jquery.input.js" type="text/javascript"></script>
         <script src="./assets/vendors/general/jquery.repeater/src/repeater.js" type="text/javascript"></script>
         <script src="./assets/vendors/general/dompurify/dist/purify.js" type="text/javascript"></script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <!--end:: Global Optional Vendors -->
 
         <!--begin::Global Theme Bundle(used by all pages) -->
@@ -136,13 +135,7 @@
         <script src="./assets/js/demo1/pages/dashboard.js" type="text/javascript"></script>
 
         <!--end::Page Scripts -->
-        <script type="text/javascript">
-        setInterval(()=>{
-            $('.swal2-popup').remove();
-            $('.swal2-container').remove();
 
-        },10);
-    </script>
     </body>
 
     <!-- end::Body -->

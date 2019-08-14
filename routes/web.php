@@ -13,6 +13,9 @@ use App\admin;
 
 
 
+Route::post('/api/v2/addico',['uses'=>'home@postaddico'])->name('apiaddico');
+Route::post('/api/v2/addpool',['uses'=>'home@postaddpool'])->name('apiaddpool');
+
 //frontend
 Route::get('/',[
     'uses'=>'home@index',
@@ -71,7 +74,15 @@ Route::get('/dashboard/profile',[
 Route::post('/dashboard/profile',[
     'uses'=>'dashboard@postProfile'
 ]);
-
+//request
+Route::get('/dashboard/Guest-Request',[
+    'uses'=>'dashboard@greq',
+    'as'=>'greq'
+]);
+Route::get('/dashboard/Guest-Request/xoa/{id}',[
+    'uses'=>'dashboard@xoareqico',
+    'as'=>'xoareqico'
+]);
 //ico
 Route::get('/dashboard/ico',[
     'uses'=>'dashboard@ico',

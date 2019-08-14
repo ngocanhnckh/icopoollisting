@@ -9,9 +9,51 @@ use App\icopool;
 use App\ads;
 use App\icoactive;
 use App\blog;
+use App\reqico;
+use App\reqpool;
 class home extends Controller
 {
+    public function to_slug($str) {
+            $str = trim(mb_strtolower($str));
+            $str = preg_replace('/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/', 'a', $str);
+            $str = preg_replace('/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/', 'e', $str);
+            $str = preg_replace('/(ì|í|ị|ỉ|ĩ)/', 'i', $str);
+            $str = preg_replace('/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/', 'o', $str);
+            $str = preg_replace('/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/', 'u', $str);
+            $str = preg_replace('/(ỳ|ý|ỵ|ỷ|ỹ)/', 'y', $str);
+            $str = preg_replace('/(đ)/', 'd', $str);
+            $str = preg_replace('/[^a-z0-9-\s]/', '', $str);
+            $str = preg_replace('/([\s]+)/', '-', $str);
+            return $str;
+        }
+    public function postaddico(Request $req){
+        $ico=ico::all()->where('slug',$this->to_slug($req->name));
+        if(count($ico)!=0){
+            return "Ico Đã Tồn tại!!<script>setTimeout(function(){window.location='".route('home')."'},3000);</script>";
+        }
+        $save = new reqico;
+        $save->name=$req->name;
+        $save->link=$req->link;
+        $save->contact=$req->contact;
+        $save->cmt=$req->cmt;
+        $save->save();
+        return "Your request have post!!<script>setTimeout(function(){window.location='".route('home')."'},3000);</script>";
 
+    }
+    public function postaddpool(Request $req){
+        $pool=icopool::all()->where('slug',$this->to_slug($req->name));
+        if(count($pool)!=0){
+            return "IcoPool Đã Tồn tại!!<script>setTimeout(function(){window.location='".route('home')."'},3000);</script>";
+        }
+        $save = new reqpool;
+        $save->name=$req->name;
+        $save->link=$req->link;
+        $save->contact=$req->contact;
+        $save->cmt=$req->cmt;
+        $save->save();
+        return "Your request have post!!<script>setTimeout(function(){window.location='".route('home')."'},3000);</script>";
+
+    }
     public function index(){
         $title='Home';
         $icopool=icopool::paginate(10);

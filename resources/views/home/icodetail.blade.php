@@ -187,10 +187,15 @@ td {
                             <div class="container">
                                <div class="row">
                                    <div class="col-md-10 col-5">
-                                        <p class="float-left pb-3" > Product:<b>{{$data->Product}}/10</b></p><br>
-                                        <p class="float-left pb-3" > Team and <br> partners:  <b>{{$data->teamnpartner}}/10</b></p><br>
-                                        <p class="float-left pb-3" > Market:  <b>{{$data->Market}}/10</b></p><br>   <Br>
-                                        <b class="text-success"> Average: {{$data->average}} / 10</b>
+
+
+                                         @if($data->average>=7)
+                                        <p valign="middle " style="color:green;">Score: {{$data->average}} / 10</p>
+                                        @elseif($data->average<7&&$data->average>=5)
+                                        <p valign="middle" style="color:#cd9f12;">Score: {{$data->average}} / 10</p>
+                                        @else
+                                        <p valign="middle" style="color:red;"> Score: {{$data->average}} / 10</p>
+                                        @endif
                                     </div>
                                    </div>
                                </div>

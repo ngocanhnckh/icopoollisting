@@ -10,6 +10,8 @@ use App\ads;
 use App\icoactive;
 use App\logo;
 use App\blog;
+use App\reqico;
+use App\reqpool;
 class dashboard extends Controller
 {
     public function deslugico($slug){
@@ -47,6 +49,32 @@ class dashboard extends Controller
             $str = preg_replace('/([\s]+)/', '-', $str);
             return $str;
         }
+    public function greq(){
+        if(Auth::check()==false){
+            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 5s<script>setTimeout(function(){window.location='".route('dashboard')."'},5000);</script>";
+        }
+        $admin=admin::all();
+        $ico=reqico::all();
+        $pool=reqpool::all();
+
+        $trang='greq';
+
+        return view('dashboard.greq',compact('trang','admin','ico','pool'));
+    }
+    public function xoareqico($id){
+        if(Auth::check()==false){
+            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 5s<script>setTimeout(function(){window.location='".route('dashboard')."'},5000);</script>";
+        }
+        $xoa=reqico::find($id);
+        $xoa->delete();
+        return redirect()->back();
+    }
     public function acc(){
         $admin=admin::all();
         $trang='acc';

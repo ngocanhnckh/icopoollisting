@@ -20,9 +20,7 @@
                                 <th>#</th>
                                 <th>ICO Name</th>
 
-                                <th>Product</th>
-                                <th>Team and partners</th>
-                                <th>Market</th>
+                                <th>Point</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -32,9 +30,8 @@
                                 <th scope="row">{{$data->id}}</th>
                                 <td>{{$data->name}}</td>
 
-                                <td>{{$data->Product}}</td>
-                                <td>{{$data->teamnpartner}}</td>
-                                <td>{{$data->Market}}</td>
+                                <td>{{$data->average}}</td>
+
                                 <td>
                                     <button onclick="window.location='{{route('editico',$data->id)}}'"  type="button" class="btn btn-brand btn-elevate btn-pill">
                                         <i class="flaticon-edit"></i>

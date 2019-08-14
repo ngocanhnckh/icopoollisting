@@ -1,10 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <!-- begin::Head -->
 
 <head>
-
     <base href="{{asset('public/dashboard')}}/">
     <!--begin::Base Path (base relative path for assets of this page) -->
     <!--end::Base Path -->
@@ -57,6 +55,8 @@
     <link href="./assets/vendors/custom/vendors/flaticon/flaticon.css" rel="stylesheet" type="text/css" />
     <link href="./assets/vendors/custom/vendors/flaticon2/flaticon.css" rel="stylesheet" type="text/css" />
     <link href="./assets/vendors/general/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+    <script src="./assets/vendors/general/jquery/dist/jquery.js" type="text/javascript"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!--end:: Global Optional Vendors -->
     <!--begin::Global Theme Styles(used by all pages) -->
     <link href="./assets/css/demo1/style.bundle.front.css" rel="stylesheet" type="text/css" />
@@ -68,11 +68,18 @@
     <link href="./assets/css/demo1/skins/aside/dark.css" rel="stylesheet" type="text/css" />
     <!--end::Layout Skins -->
     <style type="text/css">
-        .cogach{
-            text-decoration: underline;
-        }
+    .cogach {
+        text-decoration: underline;
+    }
+
+    .modal-backdrop {
+        z-index: 0;
+    }
+
     </style>
     <link rel="shortcut icon" href="{{asset('public/thumnailimg')}}/{{$thumnail}}" />
+    <script type="text/javascript">
+    </script>
 </head>
 <!-- end::Head -->
 <!-- begin::Body -->
@@ -110,12 +117,12 @@
                                 li.indent{ padding-left: 1.8em }
                                 </style>
                             <ul class="kt-menu__nav ">
-
-
-                                <li onclick="window.location='{{route('home')}}';"  class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel @if($title!='Blog') kt-menu__item--active @endif"><a href="#" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">Home</span></a>
+                                <li onclick="window.location='{{route('home')}}';" class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel @if($title!='Blog') kt-menu__item--active @endif"><a href="#" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">Home</span></a>
                                 </li>
-
-                                <li onclick="window.location='{{route('trangblog')}}';"  class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel @if($title=='Blog') kt-menu__item--active @endif"><a href="#" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">Blog</span></a>
+                                <li onclick="window.location='{{route('trangblog')}}';" class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel @if($title=='Blog') kt-menu__item--active @endif"><a href="#" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">Blog</span></a>
+                                </li>
+                                <li onclick="addico();" class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel @if($title=='Blog') kt-menu__item--active @endif"><a class="btn btn-outline-danger btn-pill" data-toggle="modal" data-target="#addico" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">+ ADD Ico</span></a>
+                                <li onclick="" class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel @if($title=='Blog') kt-menu__item--active @endif"><a class="btn btn-outline-success btn-pill"  data-toggle="modal" data-target="#addpool" href="#" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">ADD ICOPool</span></a>
                                 </li>
                                 @if(Auth::check()==true)
                                 <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" onclick="window.location='{{route('dashboard')}}'"><a href="{{route('dashboard')}}" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">Dashboard</span></a>
@@ -127,6 +134,61 @@
                     <!-- end:: Header Menu -->
                     <!-- begin:: Header Topbar -->
                     <div class="kt-header__topbar">
+                        <!-- Button trigger modal -->
+                        <!-- Modal -->
+                        <div class="modal fade" id="addico" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Add New ICO</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form class="formaddico" method="post" action="{{route('apiaddico')}}">
+                                    <div class="modal-body">
+
+                                            @csrf
+                                            <input class="form-control my-2 iconame" type="text" placeholder="ICO Name" required="" name="name">
+                                            <input class="form-control my-2 icolink" type="url" placeholder="Main Link" name="link">
+                                            <input class="form-control my-2 icocontact" type="text" placeholder="Your Contact" required="" name="contact">
+                                            <textarea class="form-control my-2 icocmt" name="cmt" placeholder="Comment"></textarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <input type="submit" value="ADD" class="btn btn-primary" />
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="addpool" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Add New ICOPool</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form class="formaddico" method="post" action="{{route('apiaddpool')}}">
+                                    <div class="modal-body">
+
+                                            @csrf
+                                            <input class="form-control my-2 iconame" type="text" placeholder="ICOPool Name" required="" name="name">
+                                            <input class="form-control my-2 icolink" type="url" placeholder="Main Link" name="link">
+                                            <input class="form-control my-2 icocontact" type="text" placeholder="Your Contact" required="" name="contact">
+                                            <textarea class="form-control my-2 icocmt" name="cmt" placeholder="Comment"></textarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <input type="submit" value="ADD" class="btn btn-primary" />
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                         <!--begin: Search -->
                         <!--begin: Search -->
                         <div class="kt-header__topbar-item kt-header__topbar-item--search dropdown" id="kt_quick_search_toggle">
@@ -207,7 +269,6 @@
                                 <!--end: Navigation -->
                             </div>
                         </div>
-
                         @else
                         <div class="kt-header__topbar-item kt-header__topbar-item--user">
                             <div class="kt-header__topbar-wrapper" data-offset="0px,0px">
@@ -225,3 +286,4 @@
                     </div>
                     <!-- end:: Header Topbar -->
                 </div>
+

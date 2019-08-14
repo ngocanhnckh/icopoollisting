@@ -374,19 +374,15 @@ td {
                                                 <thead>
                                                     <tr>
                                                         <th>ICO Name</th>
-                                                        <th>Product</th>
-                                                        <th>Team and partners</th>
-                                                        <th>Market</th>
-                                                        <th>Average score</th>
+
+                                                        <th>Score</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @foreach($ana as $data)
                                                     <tr onclick="window.location='{{route('icodetail',to_slug($data->name))}}'" class="pointer">
                                                         <td valign="middle">{{$data->name}}</td>
-                                                        <td valign="middle">{{$data->Product}}</td>
-                                                        <td valign="middle">{{$data->teamnpartner}}</td>
-                                                        <td valign="middle">{{$data->Market}}</td>
+
                                                         @if($data->average>=7)
                                                         <td valign="middle " style="color:green;">{{$data->average}} / 10</td>
                                                         @elseif($data->average<7&&$data->average>=5)
