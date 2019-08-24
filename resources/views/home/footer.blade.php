@@ -9,8 +9,16 @@
                             @foreach($link as $data)
                                 <a href="{{$data->link}}"  style="color:#fff;" target="{{$data->target}}" class="kt-footer__menu-link kt-link">{{$data->name}}</a>
                             @endforeach
-
-
+                            <button onclick="report()" style=" color: white;height: 50px;"  class="kt-footer__menu-link kt-link btn  btn-danger btn-pill"> REPORT BUGS</button>
+                            <script type="text/javascript">
+                                function report(){
+                                    Swal.fire(
+  'If you see bugs in this web please report for us',
+  'You send your bug you have found at: {{$mail}}',
+  'success'
+);
+                                }
+                            </script>
                         </div>
                     </div>
 

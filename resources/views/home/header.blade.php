@@ -79,7 +79,9 @@
     </style>
     <link rel="shortcut icon" href="{{asset('public/thumnailimg')}}/{{$thumnail}}" />
     <script type="text/javascript">
+
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 </head>
 <!-- end::Head -->
 <!-- begin::Body -->
