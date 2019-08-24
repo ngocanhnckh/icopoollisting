@@ -21,6 +21,18 @@ Route::get('/',[
     'uses'=>'home@index',
     'as'=>'home'
 ]);
+Route::get('/about',[
+    'uses'=>'home@about',
+    'as'=>'about'
+]);
+Route::get('/faq',[
+    'uses'=>'home@faq',
+    'as'=>'faq'
+]);
+Route::get('/adv',[
+    'uses'=>'home@adv',
+    'as'=>'adv'
+]);
 Route::get('/ico-detail/{slug}',[
     'uses'=>'home@icodetail',
     'as'=>'icodetail'
@@ -43,8 +55,16 @@ Route::get('/bai-viet/{slug}',[
 //logo
 Route::get('/dashboard/logo', ['uses'=>'dashboard@logo'])->name('logo');
 Route::post('/dashboard/logo', ['uses'=>'dashboard@postlogo']);
+Route::get('/dashboard/page', ['uses'=>'dashboard@about'])->name('admin-about');
+Route::post('/dashboard/page', ['uses'=>'dashboard@postabout']);
 //endlogo
-
+//link
+Route::get('/dashboard/link', ['uses'=>'dashboard@link'])->name('link');
+Route::get('/dashboard/link/edit/{id}', ['uses'=>'dashboard@editlink'])->name('editlink');
+Route::post('/dashboard/link/edit/{id}', ['uses'=>'dashboard@posteditlink']);
+Route::get('/dashboard/link/delete/{id}', ['uses'=>'dashboard@xoalink'])->name('xoalink');
+Route::get('/dashboard/link/add', ['uses'=>'dashboard@addlink'])->name('addlink');
+Route::post('/dashboard/link/add', ['uses'=>'dashboard@postaddlink']);
 //blog
 Route::get('/dashboard/blog', ['uses'=>'dashboard@blog'])->name('blog');
 Route::get('/dashboard/blog/add', ['uses'=>'dashboard@addblog'])->name('addblog');

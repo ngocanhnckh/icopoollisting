@@ -1,11 +1,15 @@
 <!-- begin:: Footer -->
-                    <div class="kt-footer kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" id="kt_footer">
-                        <div class="kt-footer__copyright">
-                            2019&nbsp;&copy;&nbsp;<a href="http://google.com" target="_blank" class="kt-link">ksateam</a>
+                    <div class="kt-footer kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" id="kt_footer" style="color:#fff; background: linear-gradient(to right, #36d1dc 0%, #5b86e5 100%);">
+                        <div class="kt-footer__copyright" style="color:#fff;">
+                            <img class="logo-img-cls img-fluid" style="max-height: 80px;max-width: 200px;" alt="Logo" src="{{asset('public/logoimg')}}/{{$logo}}" >&nbsp;
+                            2019&nbsp;&copy;&nbsp;<a  style="color:#fff;" href="http://google.com" target="_blank" class="kt-link">ksateam</a>
                         </div>
                         <div class="kt-footer__menu">
-                            <a href="{{route('home')}}" target="_blank" class="kt-footer__menu-link kt-link">Home</a>
-                            <a href="{{route('trangblog')}}" target="_blank" class="kt-footer__menu-link kt-link">Blog</a>
+
+                            @foreach($link as $data)
+                                <a href="{{$data->link}}"  style="color:#fff;" target="{{$data->target}}" class="kt-footer__menu-link kt-link">{{$data->name}}</a>
+                            @endforeach
+
 
                         </div>
                     </div>

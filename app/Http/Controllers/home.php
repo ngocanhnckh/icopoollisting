@@ -11,6 +11,7 @@ use App\icoactive;
 use App\blog;
 use App\reqico;
 use App\reqpool;
+use App\page;
 class home extends Controller
 {
     public function to_slug($str) {
@@ -117,17 +118,48 @@ class home extends Controller
         return view('home.pooldetail',compact('title','icopool','activearr','icoactive','ico','ana','data'));
     }
     public function blog(){
+        $admin=admin::find(1);
         $title='Blog';
         $blog=blog::all();
-
+        $admin->view=$admin->view+1;
+        $admin->save();
         return view('home.blog',compact('title','blog'));
     }
     public function baiviet($slug){
-
+        $admin=admin::find(1);
+        $admin->view=$admin->view+1;
+        $admin->save();
         $blog=blog::all()->where('slug',$slug)->first();
         $title= $blog->title;
         $blog->view++;
         $blog->save();
         return view('home.baiviet',compact('title','blog'));
+    }
+    public function about(){
+        $admin=admin::find(1);
+        $admin->view=$admin->view+1;
+        $admin->save();
+        $blog=blog::all();
+        $title= 'About';
+        $page=page::all();
+        return view('home.about',compact('title','blog','page'));
+    }
+    public function faq(){
+        $admin=admin::find(1);
+        $admin->view=$admin->view+1;
+        $admin->save();
+        $blog=blog::all();
+        $title= 'Faq';
+$page=page::all();
+        return view('home.faq',compact('title','blog','page'));
+    }
+    public function adv(){
+        $admin=admin::find(1);
+        $admin->view=$admin->view+1;
+        $admin->save();
+        $blog=blog::all();
+        $title= 'Adv';
+$page=page::all();
+        return view('home.adv',compact('title','blog','page'));
     }
 }

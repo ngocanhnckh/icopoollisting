@@ -117,17 +117,25 @@
                                 li.indent{ padding-left: 1.8em }
                                 </style>
                             <ul class="kt-menu__nav ">
-                                <li onclick="window.location='{{route('home')}}';" class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel @if($title!='Blog') kt-menu__item--active @endif"><a href="#" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">Home</span></a>
+                                <li onclick="window.location='{{route('home')}}';" class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel @if($title=='Home') kt-menu__item--active @endif"><a href="{{route('home')}}" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">Home</span></a>
                                 </li>
-                                <li onclick="window.location='{{route('trangblog')}}';" class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel @if($title=='Blog') kt-menu__item--active @endif"><a href="#" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">Blog</span></a>
+                                <li onclick="window.location='{{route('trangblog')}}';" class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel @if($title=='Blog') kt-menu__item--active @endif"><a href="{{route('trangblog')}}" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">Blog</span></a>
                                 </li>
-                                <li onclick="addico();" class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel @if($title=='Blog') kt-menu__item--active @endif"><a class="btn btn-outline-danger btn-pill" data-toggle="modal" data-target="#addico" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">+ ADD Ico</span></a>
-                                <li onclick="" class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel @if($title=='Blog') kt-menu__item--active @endif"><a class="btn btn-outline-success btn-pill"  data-toggle="modal" data-target="#addpool" href="#" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">ADD ICOPool</span></a>
+                               <li onclick="window.location='{{route('about')}}';" class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel @if($title=='About') kt-menu__item--active @endif"><a href="{{route('about')}}" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">About</span></a>
+                                </li>
+                                <li onclick="window.location='{{route('faq')}}';" class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel @if($title=='Faq') kt-menu__item--active @endif"><a href="{{route('faq')}}" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">Faq</span></a>
+                                </li>
+                                <li onclick="window.location='{{route('adv')}}';" class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel @if($title=='Adv') kt-menu__item--active @endif"><a href="{{route('adv')}}" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">Adv</span></a>
                                 </li>
                                 @if(Auth::check()==true)
                                 <li class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" onclick="window.location='{{route('dashboard')}}'"><a href="{{route('dashboard')}}" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">Dashboard</span></a>
                                 </li>
                                 @endif
+                                <li onclick="addico();" class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel @if($title=='Blog') kt-menu__item--active @endif"><a class="btn btn-outline-danger btn-pill" data-toggle="modal" data-target="#addico" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">+ ADD Ico</span></a>
+                                </li>
+                                <li onclick="" class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel @if($title=='Blog') kt-menu__item--active @endif"><a class="btn btn-outline-success btn-pill"  data-toggle="modal" data-target="#addpool" href="#" class="kt-menu__link kt-menu__toggle"><span class="kt-menu__link-text">ADD ICOPool</span></a>
+                                </li>
+
                             </ul>
                         </div>
                     </div>

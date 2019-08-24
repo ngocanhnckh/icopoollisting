@@ -12,6 +12,8 @@ use App\logo;
 use App\blog;
 use App\reqico;
 use App\reqpool;
+use App\page;
+use App\link;
 class dashboard extends Controller
 {
     public function deslugico($slug){
@@ -49,6 +51,98 @@ class dashboard extends Controller
             $str = preg_replace('/([\s]+)/', '-', $str);
             return $str;
         }
+        //link
+        public function link(){
+        if(Auth::check()==false){
+            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 5s<script>setTimeout(function(){window.location='".route('dashboard')."'},5000);</script>";
+        }
+        $admin=admin::all();
+
+        $link=link::all();
+        $trang='link';
+
+        return view('dashboard.link',compact('trang','admin','link'));
+        }
+        public function editlink($id){
+        if(Auth::check()==false){
+            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 5s<script>setTimeout(function(){window.location='".route('dashboard')."'},5000);</script>";
+        }
+        $admin=admin::all();
+
+        $link=link::find($id);
+        $trang='sd';
+
+        return view('dashboard.editlink',compact('trang','admin','link'));
+    }
+    public function posteditlink($id,Request $req){
+        if(Auth::check()==false){
+            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 5s<script>setTimeout(function(){window.location='".route('dashboard')."'},5000);</script>";
+        }
+        $admin=admin::all();
+
+        $link=link::find($id);
+        $trang='sd';
+        $link->name=$req->name;
+        $link->link=$req->link;
+        $link->target=$req->target;
+        $link->save();
+        return redirect()->route('link');
+    }
+    public function addlink(){
+        if(Auth::check()==false){
+            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 5s<script>setTimeout(function(){window.location='".route('dashboard')."'},5000);</script>";
+        }
+        $admin=admin::all();
+        $link='';
+        $trang='sd';
+
+        return view('dashboard.addlink',compact('trang','admin','link'));
+    }
+    public function postaddlink(Request $req){
+        if(Auth::check()==false){
+            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 5s<script>setTimeout(function(){window.location='".route('dashboard')."'},5000);</script>";
+        }
+        $admin=admin::all();
+
+        $link=new link;
+        $trang='sd';
+        $link->name=$req->name;
+        $link->link=$req->link;
+        $link->target=$req->target;
+        $link->save();
+        return redirect()->route('link');
+    }
+    public function xoalink($id){
+        if(Auth::check()==false){
+            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 5s<script>setTimeout(function(){window.location='".route('dashboard')."'},5000);</script>";
+        }
+        $admin=admin::all();
+
+        $link=link::find($id);
+        $link->delete();
+
+        return redirect()->route('link');
+    }
+
+        //end:link
     public function greq(){
         if(Auth::check()==false){
             return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
@@ -73,6 +167,34 @@ class dashboard extends Controller
         }
         $xoa=reqico::find($id);
         $xoa->delete();
+        return redirect()->back();
+    }
+    public function about(){
+        if(Auth::check()==false){
+            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 5s<script>setTimeout(function(){window.location='".route('dashboard')."'},5000);</script>";
+        }
+        $admin=admin::all();
+        $trang='about';
+        $page=page::all();
+        return view('dashboard.about',compact('admin','trang','page'));
+    }
+    public function postabout(Request $req){
+        if(Auth::check()==false){
+            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 5s<script>setTimeout(function(){window.location='".route('dashboard')."'},5000);</script>";
+        }
+        $admin=admin::all();
+        $trang='about';
+        $page=page::all();
+        $page[0]->about=$req->about;
+        $page[0]->faq=$req->faq;
+        $page[0]->adv=$req->adv;
+        $page[0]->save();
         return redirect()->back();
     }
     public function acc(){
