@@ -1,5 +1,20 @@
 @extends('home.master')
 @section('content')
+<?php
+    function to_slug($str) {
+            $str = trim(mb_strtolower($str));
+            $str = preg_replace('/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/', 'a', $str);
+            $str = preg_replace('/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/', 'e', $str);
+            $str = preg_replace('/(ì|í|ị|ỉ|ĩ)/', 'i', $str);
+            $str = preg_replace('/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/', 'o', $str);
+            $str = preg_replace('/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/', 'u', $str);
+            $str = preg_replace('/(ỳ|ý|ỵ|ỷ|ỹ)/', 'y', $str);
+            $str = preg_replace('/(đ)/', 'd', $str);
+            $str = preg_replace('/[^a-z0-9-\s]/', '', $str);
+            $str = preg_replace('/([\s]+)/', '-', $str);
+            return $str;
+        }
+?>
 <style type="text/css">
 td {
 
@@ -35,14 +50,14 @@ td {
         <div class="row">
             <div class="col-md-10">
                 <div class="kt-portlet">
-                    <div class="kt-portlet__head">
+                    <div  class="kt-portlet__head">
 
                         <div class="kt-portlet__head-label">
                             <h3 class="kt-portlet__head-title ">
                                 <a onclick="history.back();" class="pointer" style="position: absolute; top:0;left:0; font-size: 80%;" ><i class="flaticon2-back"></i>Back</a>
                                 <br><br>
                                 <p style="font-size: 120%;">{{$data->name}}</p>
-
+                                
                             </h3>
                         </div>
                     </div>
@@ -77,7 +92,7 @@ td {
                                                                 if (strlen(strstr($icopool[$i]->activeico,$data->name )) > 0) {
 
                                                                     $poolarr[$dem]=$icopool[$i]->name;
-                                                                    echo "<a href='#' class='cogach'>".$icopool[$i]->name."</a><br>";
+                                                                    echo "<a href='".route('pooldetail',to_slug($icopool[$i]->name))."' class='cogach'>".$icopool[$i]->name."</a><br>";
                                                                     $dem++;
                                                                 }
 
@@ -172,8 +187,12 @@ td {
                     </div>
                 </div>
             </div>
-            <div class="col-md-2">
-                <div class="kt-portlet">
+            <div class="col-md-2" >
+                <div class="kt-portlet" style="background-color:
+                    @if($data->average<5)#fd397a
+                    @elseif($data->average>=5&&$data->average<7)yellow
+                    @else green
+                    @endif">
                     <div class="kt-portlet__head">
                         <div class="kt-portlet__head-label">
                             <h3 class="kt-portlet__head-title">
@@ -185,17 +204,13 @@ td {
                         <!--begin::Section-->
                         <div class="kt-section" style="font-size: 120%; display: block;">
                             <div class="container">
-                               <div class="row">
-                                   <div class="col-md-10 col-5">
+                               <div class="row" >
+                                   <div class="col-md-10 col-5" >
 
 
-                                         @if($data->average>=7)
-                                        <p valign="middle " style="color:green;">Score: {{$data->average}} / 10</p>
-                                        @elseif($data->average<7&&$data->average>=5)
-                                        <p valign="middle" style="color:#cd9f12;">Score: {{$data->average}} / 10</p>
-                                        @else
-                                        <p valign="middle" style="color:red;"> Score: {{$data->average}} / 10</p>
-                                        @endif
+
+                                        <p valign="middle " style="color:black; font-size: 130%;">Score: {{$data->average}} / 10</p>
+
                                     </div>
                                    </div>
                                </div>

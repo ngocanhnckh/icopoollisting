@@ -1,13 +1,100 @@
 <!-- begin:: Footer -->
-                    <div class="kt-footer kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" id="kt_footer" style="color:#fff; background: linear-gradient(to right, #36d1dc 0%, #5b86e5 100%);">
-                        <div class="kt-footer__copyright" style="color:#fff;">
-                            <img class="logo-img-cls img-fluid" style="max-height: 80px;max-width: 200px;" alt="Logo" src="{{asset('public/logoimg')}}/{{$logo}}" >&nbsp;
-                            2019&nbsp;&copy;&nbsp;<a  style="color:#fff;" href="http://google.com" target="_blank" class="kt-link">ksateam</a>
-                        </div>
-                        <div class="kt-footer__menu">
+<footer class="page-footer font-small unique-color-dark">
 
-                            @foreach($link as $data)
-                                <a href="{{$data->link}}"  style="color:#fff;" target="{{$data->target}}" class="kt-footer__menu-link kt-link">{{$data->name}}</a>
+<div style="background-color: #6351ce;">
+  <div class="container">
+
+    <!-- Grid row-->
+    <div class="row py-4 d-flex align-items-center">
+
+      <!-- Grid column -->
+      <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
+        <h6 class="mb-0" style="color:white;">This is Icopool Web!</h6>
+      </div>
+      <!-- Grid column -->
+
+
+    </div>
+    <!-- Grid row-->
+
+  </div>
+</div>
+
+<!-- Footer Links -->
+<div class="container text-center text-md-left mt-5">
+
+  <!-- Grid row -->
+  <div class="row mt-3">
+
+    <!-- Grid column -->
+    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+      <!-- Content -->
+      <h6 class="text-uppercase font-weight-bold">Company name</h6>
+      <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+      <p>This web help you to see Ico and Icopool. If you see bugs Please report it for us ♥</p>
+
+    </div>
+    <!-- Grid column -->
+
+    <!-- Grid column -->
+   
+    <!-- Grid column -->
+
+    <!-- Grid column -->
+    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+      <!-- Links -->
+      <h6 class="text-uppercase font-weight-bold">Useful links</h6>
+      <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+    @foreach($link as $data)
+        <p>
+        <a href="{{$data->link}}" target="{{$data->target}}">{{$data->name}}</a>
+        </p>
+    @endforeach
+
+    </div>
+    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+      <!-- Links -->
+      <h6 class="text-uppercase font-weight-bold">Report Bugs</h6>
+      <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
+      <p>
+      <button onclick="report()" style=" color: white;height: 50px;"  class="btn btn-danger"> REPORT BUGS</button>
+      </p>
+
+      <script type="text/javascript">
+                                function report(){
+                                    Swal.fire(
+  'If you see bugs in this web please report for us',
+  'You send your bug you have found at: {{$mail}}',
+  'success'
+);
+                                }
+                            </script>
+    </div>
+    <!-- Grid column -->
+
+    <!-- Grid column -->
+    
+    <!-- Grid column -->
+
+  </div>
+  <!-- Grid row -->
+
+</div>
+<!-- Footer Links -->
+
+<!-- Copyright -->
+<div class="footer-copyright text-center py-3">© 2019 Copyright:
+  <a href="#">Company name</a>
+</div>
+<!-- Copyright -->
+
+</footer>
+
+                            <!-- @foreach($link as $data)
+                                <a href="{{$data->link}}"  style="color:#fff;" target="{{$data->target}}" class="kt-footer__menu-link pt-3 kt-link">{{$data->name}}</a>
                             @endforeach
                             <button onclick="report()" style=" color: white;height: 50px;"  class="kt-footer__menu-link kt-link btn  btn-danger btn-pill"> REPORT BUGS</button>
                             <script type="text/javascript">
@@ -19,8 +106,7 @@
 );
                                 }
                             </script>
-                        </div>
-                    </div>
+                         -->
 
                     <!-- end:: Footer -->
                 </div>
