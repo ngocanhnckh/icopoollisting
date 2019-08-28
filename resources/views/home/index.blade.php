@@ -243,7 +243,7 @@ td {
                                                                 if (strlen(strstr($icopool[$i]->activeico,$data->name )) > 0) {
 
                                                                     $poolarr[$dem]=$icopool[$i]->name;
-                                                                    echo "<a href='#' class='cogach'>".$icopool[$i]->name."</a><br>";
+                                                                    echo "<a href='".route('pooldetail',to_slug($icopool[$i]->name))."' class='cogach'>".$icopool[$i]->name."</a><br>";
                                                                     $dem++;
                                                                 }
 
