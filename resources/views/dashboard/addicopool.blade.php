@@ -98,6 +98,13 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label class="col-lg-2 col-form-label">Score:</label>
+                                <div class="col-lg-4">
+                                    <input name="score" step="0.01" type="number" class="form-control" placeholder="Enter Score" value="{{$ico->average}}">
+                                    <span class="form-text text-muted"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="col-lg-2 col-form-label">Description:</label>
                                 <div class="col-lg-12">
                                     <textarea style="height: 150%;" class="form-control" id="summary-ckeditor" name="description"></textarea>

@@ -46,9 +46,9 @@ td {
     <!-- begin:: Subheader -->
     <!-- end:: Subheader -->
     <!-- begin:: Content -->
-    <div class="container no-padding">
+    <div class="container-fluid no-padding">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-10">
                 <div class="kt-portlet">
                     <div class="kt-portlet__head">
 
@@ -163,7 +163,38 @@ td {
                     </div>
                 </div>
             </div>
+            <div class="col-md-2" >
+                <div class="kt-portlet" style="background-color:
+                    ">
+                    <div class="kt-portlet__head">
+                        <div class="kt-portlet__head-label">
+                            <h3 class="kt-portlet__head-title">
+                                ICOPool Analysis
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="kt-portlet__body">
+                        <!--begin::Section-->
+                        <div class="kt-section" style="font-size: 120%; display: block;">
+                            <div class="container">
+                               <div class="row" >
+                                   <div class="col-md-10 col-5" >
 
+
+
+                                        <p valign="middle " class="@if($data->score<5)text-danger
+                    @elseif($data->score>=5&&$data->score<8)text-warning
+                    @else text-success
+                    @endif" style="color:black; font-size: 130%;">Score: {{$data->score}} </p>
+
+                                    </div>
+                                   </div>
+                               </div>
+                        </div>
+                        <!--end::Section-->
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- end:: Content -->

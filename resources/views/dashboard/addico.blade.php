@@ -27,31 +27,11 @@
                                 </div>
                             </div>
 
+                            
                             <div class="form-group row">
-                                <label class="col-lg-2 col-form-label">Product:</label>
+                                <label class="col-lg-2 col-form-label">Score:</label>
                                 <div class="col-lg-4">
-                                    <input name="product" type="number" class="form-control" placeholder="Enter Product" >
-                                    <span class="form-text text-muted"></span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-2 col-form-label">Team and partners:</label>
-                                <div class="col-lg-4">
-                                    <input name="teamnpartner" type="number" class="form-control" placeholder="Enter Team and partners" >
-                                    <span class="form-text text-muted"></span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-2 col-form-label">Market:</label>
-                                <div class="col-lg-4">
-                                    <input name="market" type="number" class="form-control" placeholder="Enter Market">
-                                    <span class="form-text text-muted"></span>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-lg-2 col-form-label">Average:</label>
-                                <div class="col-lg-4">
-                                    <input name="average" type="number" class="form-control" placeholder="Enter Average">
+                                    <input name="average" step="0.01" type="number" class="form-control" placeholder="Enter Score">
                                     <span class="form-text text-muted"></span>
                                 </div>
                             </div>

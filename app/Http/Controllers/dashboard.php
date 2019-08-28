@@ -487,9 +487,7 @@ public function postlogo(Request $req){
         }
 
         $ico->name=$req->name;
-        $ico->Product=      $req->product;
-        $ico->teamnpartner= $req->teamnpartner;
-        $ico->Market=       $req->market;
+        
         $ico->average=      $req->average;
         $ico->Description=  $req->description;
 
@@ -516,9 +514,7 @@ public function postlogo(Request $req){
         if(count($check)>0) return"Đã Tồn tại Ico này. Bạn sẽ được chuyển hướng sau 5s<script>setTimeout(function(){window.location='".route('addico')."'},5000);</script>";
         $ico=new ico;
         $ico->name=         $req->name;
-        $ico->Product=      $req->product;
-        $ico->teamnpartner= $req->teamnpartner;
-        $ico->Market=       $req->market;
+       
         $ico->average=      $req->average;
         $ico->Description=  $req->description;
         $ico->idngpost = Auth::user()->id;
@@ -597,6 +593,7 @@ public function postlogo(Request $req){
         $icopool->created=                  $req->created;
         $icopool->addr=                     $req->addr;
         $icopool->Description=              $req->description;
+        $icopool->score=$req->score;
 
         $icopool->slug=$this->to_slug($req->name);
         $icopool->save();
@@ -630,6 +627,7 @@ public function postlogo(Request $req){
         $icopool->created=                  $req->created;
         $icopool->addr=                     $req->addr;
         $icopool->Description=              $req->description;
+        $icopool->score=$req->score;
         $icopool->idngpost = Auth::user()->id;
         $icopool->slug= $this->to_slug($req->name);
         $icopool->save();

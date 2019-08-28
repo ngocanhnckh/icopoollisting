@@ -383,12 +383,12 @@ td {
                                                     <tr onclick="window.location='{{route('icodetail',to_slug($data->name))}}'" class="pointer">
                                                         <td valign="middle">{{$data->name}}</td>
 
-                                                        @if($data->average>=7)
-                                                        <td valign="middle " style="color:green;">{{$data->average}} / 10</td>
-                                                        @elseif($data->average<7&&$data->average>=5)
-                                                            <td valign="middle" style="color:#cd9f12;">{{$data->average}} / 10</td>
+                                                        @if($data->average<5)
+                                                        <td valign="middle " class="text-danger">{{$data->average}} </td>
+                                                        @elseif($data->average<8&&$data->average>=5)
+                                                            <td valign="middle" class="text-warning">{{$data->average}} </td>
                                                             @else
-                                                            <td valign="middle" style="color:red;">{{$data->average}} / 10</td>
+                                                            <td valign="middle" class="text-success">{{$data->average}} </td>
                                                             @endif
                                                     </tr>
                                                     @endforeach

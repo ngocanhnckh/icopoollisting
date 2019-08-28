@@ -54,7 +54,7 @@ td {
 
                         <div class="kt-portlet__head-label">
                             <h3 class="kt-portlet__head-title ">
-                                <a onclick="history.back();" class="pointer" style="position: absolute; top:0;left:0; font-size: 80%;" ><i class="flaticon2-back"></i>Back</a>
+                                <i ><a onclick="history.back();" class="pointer" style="position: absolute; top:0;left:0; color:#5c6066; font-size: 80%;" ><i class="flaticon2-back"></i>Back</a></i>
                                 <br><br>
                                 <p style="font-size: 120%;">{{$data->name}}</p>
                                 
@@ -65,6 +65,10 @@ td {
                         <!--begin::Section-->
                         <div class="kt-section">
                             <div class="kt-section__content">
+                            <h3>Analytics</h3>
+                                <br>
+                                {!!$data->Description!!}
+                                <hr>
                                 <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
@@ -176,11 +180,8 @@ td {
 
                                     </tbody>
                                 </table>
-                                <hr>
-                                <h3>Analytics</h3>
-                                <br>
-
-                                {!!$data->Description!!}
+                                
+                                
                             </div>
                         </div>
                         <!--end::Section-->
@@ -189,10 +190,7 @@ td {
             </div>
             <div class="col-md-2" >
                 <div class="kt-portlet" style="background-color:
-                    @if($data->average<5)#fd397a
-                    @elseif($data->average>=5&&$data->average<7)yellow
-                    @else green
-                    @endif">
+                    ">
                     <div class="kt-portlet__head">
                         <div class="kt-portlet__head-label">
                             <h3 class="kt-portlet__head-title">
@@ -209,7 +207,10 @@ td {
 
 
 
-                                        <p valign="middle " style="color:black; font-size: 130%;">Score: {{$data->average}} / 10</p>
+                                        <p valign="middle " class="@if($data->average<5)text-danger
+                    @elseif($data->average>=5&&$data->average<8)text-warning
+                    @else text-success
+                    @endif" style="color:black; font-size: 130%;">Score: {{$data->average}} </p>
 
                                     </div>
                                    </div>
