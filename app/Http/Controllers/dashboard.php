@@ -737,12 +737,13 @@ public function postlogo(Request $req){
         return view('dashboard.addads',compact('trang','ico','admin'));
     }
     public function postaddads(Request $req){
-        if(Auth::user()->id!=1){
-            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
         if(Auth::check()==false){
             return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
         }
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
+        
         $filenamewithextension = $req->file('img')->getClientOriginalName();
 
         //get filename without extension
@@ -797,12 +798,13 @@ public function postlogo(Request $req){
         return view('dashboard.editads',compact('trang','ico','admin','ads'));
     }
     public function posteditads(Request $req,$id){
-        if(Auth::user()->id!=1){
-            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
         if(Auth::check()==false){
             return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
         }
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
+        
         if($req->img==null){
             $ads=ads::find($id);
             $ads->name=$req->name;
@@ -836,36 +838,39 @@ public function postlogo(Request $req){
             return redirect()->route('ads');
     }
     public function blog(){
-        if(Auth::user()->id!=1){
-            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
         if(Auth::check()==false){
             return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
         }
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
+        
         $trang='blog';
         $admin=admin::all();
         $blog=blog::all();
         return view('dashboard.blog',compact('trang','admin','blog'));
     }
     public function addblog(){
-        if(Auth::user()->id!=1){
-            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
         if(Auth::check()==false){
             return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
         }
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
+        
         $trang='xx';
         $admin=admin::all();
         $blog=blog::all();
         return view('dashboard.addblog',compact('trang','admin','blog'));
     }
     public function postaddblog(Request $req){
-        if(Auth::user()->id!=1){
-            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
         if(Auth::check()==false){
             return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
         }
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
+        
         $blog=new blog;
         $blog->title=$req->title;
         $blog->motangan=$req->short;
@@ -892,35 +897,38 @@ public function postlogo(Request $req){
         return redirect()->route('blog');
     }
     public function xoablog($id){
-        if(Auth::user()->id!=1){
-            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
         if(Auth::check()==false){
             return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
         }
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
+        
         $blog=blog::find($id);
         $blog->delete();
         return redirect()->back();
     }
     public function editblog($id){
-        if(Auth::user()->id!=1){
-            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
-        if(Auth::check()==false){
+       if(Auth::check()==false){
             return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
         }
+         if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
+        
         $trang='xx';
         $admin=admin::all();
         $blog=blog::find($id);
         return view('dashboard.editblog',compact('trang','admin','blog'));
     }
     public function posteditblog(Request $req,$id){
-        if(Auth::user()->id!=1){
-            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
         if(Auth::check()==false){
             return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
         }
+        if(Auth::user()->id!=1){
+            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
+        }
+        
 
         $blog=blog::find($id);
         $blog->slug=($this->to_slug($req->title)).time();

@@ -1,50 +1,79 @@
 <!-- begin:: Footer -->
-<footer class="page-footer font-small unique-color-dark">
+<footer class="footer">
+        <div class="container">
+            <div class="wrap_footer">
+                <div class="left_footer">
+                    <a href="https://icopools.io/en/" class="logo_foot"><img src="{{asset('public/logoimg')}}/{{$logo}}" alt=""></a>
+                    <p>List of ICO Pools</p>
+                    <p class="copyright">© 2018 ICOPools.io</p>
+                </div>
+                <div class="right_footer">
+                    <div class="right_footer2">
+                        <div class="foot_menu">
+                            <ul>
+                                
+                                <li>
+                                    <ul>
+                                        <?php $i=0; ?>
+                                    @foreach($link as $data)
+                                    <?php $i++; ?>
+                                    <li>
+                                        <a href="{{$data->link}}" target="{{$data->target}}">{{$data->name}}</a>
+                                    </li>
+                                    @if($i%3==0)
+                                    <?php $i=0?>
+                                    </ul>   
+                                    </li>
+                                    <li>
+                                    <ul>
+                                    
+                                    @endif
+                                    @endforeach
+                                        
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="foot_right">
+                            <div class="foot_lang">
+                                
+                        </div>
+                    </div>
+                    <a href="javascript:void(0);" onclick="report()" class="button-red add-bug-button">Report a bug<br>in the data</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+<!-- <footer class="page-footer font-small unique-color-dark">
 
     <div style="background-color: #6351ce;">
         <div class="container">
 
-            <!-- Grid row-->
             <div class="row py-4 d-flex align-items-center">
 
-                <!-- Grid column -->
                 <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
                     <h6 class="mb-0" style="color:white;">This is Icopool Web!</h6>
                 </div>
-                <!-- Grid column -->
 
 
             </div>
-            <!-- Grid row-->
 
         </div>
     </div>
 
-    <!-- Footer Links -->
     <div class="container text-center text-md-left mt-5">
 
-        <!-- Grid row -->
         <div class="row mt-3">
 
-            <!-- Grid column -->
             <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
 
-                <!-- Content -->
                 <h6 class="text-uppercase font-weight-bold">Company name</h6>
                 <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                 <p>This web help you to see Ico and Icopool. If you see bugs Please report it for us ♥</p>
 
             </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-
-            <!-- Grid column -->
             <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
-                <!-- Links -->
                 <h6 class="text-uppercase font-weight-bold">Useful links</h6>
                 <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                 @foreach($link as $data)
@@ -57,7 +86,6 @@
             </div>
             <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
 
-                <!-- Links -->
                 <h6 class="text-uppercase font-weight-bold">Report Bugs</h6>
                 <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
                 <p>
@@ -75,25 +103,16 @@
                     }
                 </script>
             </div>
-            <!-- Grid column -->
-
-            <!-- Grid column -->
-
-            <!-- Grid column -->
 
         </div>
-        <!-- Grid row -->
 
     </div>
-    <!-- Footer Links -->
 
-    <!-- Copyright -->
     <div class="footer-copyright text-center py-3">© 2019 Copyright:
         <a href="#">Company name</a>
     </div>
-    <!-- Copyright -->
 
-</footer>
+</footer> -->
 
 <!-- @foreach($link as $data)
                                 <a href="{{$data->link}}"  style="color:#fff;" target="{{$data->target}}" class="kt-footer__menu-link pt-3 kt-link">{{$data->name}}</a>
@@ -241,7 +260,9 @@
 
 <!--begin::Page Scripts(used by this page) -->
 <script src="./assets/js/demo1/pages/dashboard.js" type="text/javascript"></script>
-
+<script>
+    
+</script>
 <!--end::Page Scripts -->
 
 </body>
