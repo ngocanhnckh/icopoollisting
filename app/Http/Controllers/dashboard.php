@@ -579,10 +579,11 @@ public function postlogo(Request $req){
             return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
         }
 
-        $icopool=icopool::find($id);
+        
         if(Auth::user()->id!=1&&$icopool->idngpost!=Auth::user()->id){
             return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
         }
+        $icopool=icopool::find($id);
         $icopool->name=$req->name;
         $icopool->activeico=                $req->activeico;
         $icopool->numofparticipants=        $req->numofparticipants;
@@ -594,7 +595,6 @@ public function postlogo(Request $req){
         $icopool->addr=                     $req->addr;
         $icopool->Description=              $req->description;
         $icopool->score=$req->score;
-
         $icopool->slug=$this->to_slug($req->name);
         $icopool->save();
         return redirect()->route('icopool');

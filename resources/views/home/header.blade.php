@@ -96,6 +96,9 @@
         .modal-backdrop {
             z-index: 0;
         }
+        .text-warning{
+            color:#f8bf03!important;
+        }
     </style>
     <link rel="shortcut icon" href="{{asset('public/thumnailimg')}}/{{$thumnail}}" />
     <script type="text/javascript">
@@ -110,7 +113,7 @@
     class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--enabled kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading">
     <!-- begin:: Page -->
     <!-- begin:: Header Mobile -->
-    <header class="header" style="z-index: 100;">
+    <header class="header mb-5" style="z-index: 100;">
         <div class="container">
             <div class="wrap_header">
                     <div class="wr_logo">

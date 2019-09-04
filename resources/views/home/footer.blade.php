@@ -93,15 +93,7 @@
                         BUGS</button>
                 </p>
 
-                <script type="text/javascript">
-                    function report() {
-                        Swal.fire(
-                            'If you see bugs in this web please report for us',
-                            'You send your bug you have found at: {{$mail}}',
-                            'success'
-                        );
-                    }
-                </script>
+                
             </div>
 
         </div>
@@ -150,6 +142,14 @@
 
 <!-- begin::Global Config(global config for global JS sciprts) -->
 <script>
+    
+    function report() {
+                        Swal.fire(
+                            'If you see bugs in this web please report for us',
+                            'You send your bug you have found at: {{$mail}}',
+                            'success'
+                        );
+                    }
     var KTAppOptions = {
         "colors": {
             "state": {

@@ -125,6 +125,7 @@ td {
                                                         <th>Access</th>
                                                         <th>Created</th>
                                                         <th>Addr.</th>
+                                                        <th>Score</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -199,11 +200,17 @@ td {
                                                         <td valign="middle">{{$data->access}}</td>
                                                         <td valign="middle">{{$data->created}}</td>
                                                         <td valign="middle"><a href="{{$data->addr}}" target="_blank"><i style="font-size: 150%;" class="flaticon2-paperplane"></i></a></td>
+                                                        @if($data->score<5)
+                                                        <td valign="middle " class="text-danger">{{$data->score}} </td>
+                                                        @elseif($data->score<8&&$data->score>=5)
+                                                            <td valign="middle" class="text-warning">{{$data->score}} </td>
+                                                            @else
+                                                            <td valign="middle" class="text-success">{{$data->score}} </td>
+                                                            @endif
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
                                             </table>
-                                            {!!$icopool->links()!!}
                                         </div>
                                     </div>
                                     <!--end::Section-->
@@ -230,6 +237,7 @@ td {
                                                         <th>Access</th>
                                                         <th>Created</th>
                                                         <th>Addr.</th>
+                                                        <th>Score</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -356,6 +364,13 @@ td {
                                                         }
                                                         ?>
                                                         </td>
+                                                        @if($data->average<5)
+                                                        <td valign="middle " class="text-danger">{{$data->average}} </td>
+                                                        @elseif($data->average<8&&$data->average>=5)
+                                                            <td valign="middle" class="text-warning">{{$data->average}} </td>
+                                                            @else
+                                                            <td valign="middle" class="text-success">{{$data->average}} </td>
+                                                            @endif
                                                     </tr>
                                                     @endforeach
                                                 </tbody>

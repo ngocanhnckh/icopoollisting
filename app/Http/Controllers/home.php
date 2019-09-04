@@ -57,10 +57,10 @@ class home extends Controller
     }
     public function index(){
         $title='Home';
-        $icopool=icopool::paginate(10);
+        $icopool=icopool::orderBy('score','DESC')->get();
         $check=icopool::all();
         $icoactive=icoactive::all();
-        $ico=ico::orderBy('name','ASC')->get();
+        $ico=ico::orderBy('average','DESC')->get();
         $activearr=[];$dem=0;
         foreach($check as $data){
             $i=($data->id)-1;
@@ -77,7 +77,7 @@ class home extends Controller
     }
     public function icodetail($slug){
         $title='Ico Detail';
-        $icopool=icopool::paginate(10);
+        $icopool=icopool::all();
         $check=icopool::all();
         $icoactive=icoactive::all();
 
@@ -98,7 +98,7 @@ class home extends Controller
     }
     public function pooldetail($slug){
         $title='Icopools Detail';
-        $icopool=icopool::paginate(10);
+        $icopool=icopool::all();
         $check=icopool::all();
         $icoactive=icoactive::all();
 

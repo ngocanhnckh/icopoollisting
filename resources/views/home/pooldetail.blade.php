@@ -156,7 +156,7 @@ td {
                                 <h3>Analytics</h3>
                                 <br>
 
-                                {!!$data->Description!!}
+                                {!!$data->description!!}
                             </div>
                         </div>
                         <!--end::Section-->
@@ -175,7 +175,7 @@ td {
                     </div>
                     <div class="kt-portlet__body">
                         <!--begin::Section-->
-                        <div class="kt-section" style="font-size: 120%; display: block;">
+                        <div class="kt-section" style="overflow: hidden; font-size: 120%; display: block;">
                             <div class="container">
                                <div class="row" >
                                    <div class="col-md-10 col-5" >
