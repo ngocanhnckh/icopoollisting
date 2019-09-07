@@ -50,9 +50,9 @@ td {
     <!-- begin:: Subheader -->
     <!-- end:: Subheader -->
     <!-- begin:: Content -->
-    <div class="container-fluid no-padding">
+    <div class="container no-padding">
         <div class="row">
-            <div class="col-md-2">
+            <!-- <div class="col-md-2">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <?php $dem=0; ?>
@@ -81,8 +81,8 @@ td {
   </a>
 </div>
 
-            </div>
-            <div class="col-md-8">
+            </div> -->
+            <div class="col-md-12">
                 <div class="kt-portlet">
                     <div class="kt-portlet__head">
                         <div class="kt-portlet__head-label">
@@ -418,7 +418,7 @@ td {
                     </div>
                 </div>
             </div>
-            <div class="col-md-2">
+            <!-- <div class="col-md-2">
                  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <?php $dem=0; ?>
@@ -447,7 +447,7 @@ td {
   </a>
 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <!-- end:: Content -->
 </div>
