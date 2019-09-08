@@ -341,7 +341,7 @@
                                                     </div>
                                                 </a>
                                                 @if(Auth::user()->id==1)
-                                                <a href="{{route('ads')}}" class="kt-notification__item">
+                                                <!-- <a href="{{route('ads')}}" class="kt-notification__item">
                                                     <div class="kt-notification__item-icon">
                                                         <i class="flaticon2-chart2 kt-font-danger"></i>
                                                     </div>
@@ -353,7 +353,7 @@
 
                                                         </div>
                                                     </div>
-                                                </a>
+                                                </a> -->
                                                 @endif
 
                                             </div>
