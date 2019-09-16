@@ -124,7 +124,7 @@
                                     <li><a href="{{route('about')}}">About</a></li>
                                     <li><a href="{{route('faq')}}">FAQ</a></li>
                                     <li><a href="{{route('adv')}}">Adv</a></li>
-                                    <li><a href="{{route('trangblog')}}">Blog</a></li>
+                                    <li><a href="{{$linktwitter}}">Blog</a></li>
                                     
                                 </ul>
                                 
@@ -156,7 +156,7 @@
                                     <li class="hidden-desktop"><a href="{{route('about')}}">About</a></li>
                                     <li class="hidden-desktop"><a href="{{route('faq')}}">FAQ</a></li>
                                     <li class="hidden-desktop"><a href="{{route('adv')}}">Adv</a></li>
-                                    <li><a href="{{route('trangblog')}}">Blog</a></li>
+                                    <li><a href="{{$linktwitter}}">Blog</a></li>
                                     <li class="hidden-desktop"><a data-toggle="modal" data-target="#addico" >Add ICO</a></li>
                                     <li class="hidden-desktop"><a   >Add pool</a></li>
 

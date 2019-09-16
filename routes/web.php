@@ -42,15 +42,15 @@ Route::get('/icopools-detail/{slug}',[
     'as'=>'pooldetail'
 ]);
 //blog
-Route::get('/bai-viet',[
-    'uses'=>'home@blog',
-    'as'=>'trangblog'
-]);
+// Route::get('/bai-viet',[
+//     'uses'=>'home@blog',
+//     'as'=>'trangblog'
+// ]);
 
-Route::get('/bai-viet/{slug}',[
-    'uses'=>'home@baiviet',
-    'as'=>'baiviet'
-]);
+// Route::get('/bai-viet/{slug}',[
+//     'uses'=>'home@baiviet',
+//     'as'=>'baiviet'
+// ]);
 //=====backend
 //logo
 Route::get('/dashboard/logo', ['uses'=>'dashboard@logo'])->name('logo');

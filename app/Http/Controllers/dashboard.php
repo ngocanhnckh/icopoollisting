@@ -871,28 +871,8 @@ public function postlogo(Request $req){
             return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
         }
         
-        $blog=new blog;
-        $blog->title=$req->title;
-        $blog->motangan=$req->short;
-        $blog->tag=$req->tag;
-        $blog->slug=($this->to_slug($req->title)).time();
-        $blog->view=0;
-        $blog->content=$req->content;
-        $filenamewithextension = $req->file('img')->getClientOriginalName();
-
-        //get filename without extension
-        $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-
-        //get file extension
-        $extension = $req->file('img')->getClientOriginalExtension();
-
-        //filename to store
-        $filenametostore = $filename.'_'.time().'.'.$extension;
-        $req->file('img')->move(
-            'public/thumbnailblog', //nơi cần lưu
-            $filenametostore //tên file
-        );
-        $blog->img= $filenametostore;
+       $blog=blog::find(1);
+       $blog->link=$req->link;
         $blog->save();
         return redirect()->route('blog');
     }

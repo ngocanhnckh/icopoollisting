@@ -73,7 +73,8 @@ class home extends Controller
         $admin->save();
         //dd($activearr);
         $ads=ads::all();
-        return view('home.index',compact('title','icopool','activearr','icoactive','ico','ana','ads'));
+        $linktwitter=blog::find(1)->link;
+        return view('home.index',compact('title','icopool','activearr','icoactive','ico','ana','ads','linktwitter'));
     }
     public function icodetail($slug){
         $title='Ico Detail';
