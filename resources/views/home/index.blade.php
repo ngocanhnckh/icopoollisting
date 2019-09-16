@@ -94,14 +94,14 @@ td {
                     <div class="kt-portlet__body">
                         <ul class="nav nav-pills nav-fill" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#kt_tabs_5_1">By rating</a>
+                                <a class="nav-link active" data-toggle="tab" href="#kt_tabs_5_1">Tradding group</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#kt_tabs_5_2">By active ICO</a>
+                                <a class="nav-link" data-toggle="tab" href="#kt_tabs_5_2">ICO group</a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#kt_tabs_5_3">Analysis</a>
-                            </li>
+                            </li> -->
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="kt_tabs_5_1" role="tabpanel">
@@ -114,17 +114,9 @@ td {
                                                     <tr>
                                                         <th>ICO Pool Name</th>
                                                         <th>Active Ico</th>
-                                                        <th>Min Cap</th>
-                                                        <th>Bonus</th>
-                                                        <th>Comm.</th>
-                                                        <th>Raised</th>
                                                         <th>Number Of Participants</th>
-                                                        <th>Tok. distr.</th>
-                                                        <th>Rating</th>
                                                         <th>Lang.</th>
                                                         <th>Access</th>
-                                                        <th>Created</th>
-                                                        <th>Addr.</th>
                                                         <th>Score</th>
                                                     </tr>
                                                 </thead>
@@ -150,56 +142,13 @@ td {
                                                             }
                                                             ?>
                                                         </td>
-                                                        <td valign="middle">
-                                                            <?php
-
-                                                            for($i=0;$i<$dem;$i++){
-                                                                $active=$icoactive->where('icopool',$data->name)->where('ico',$icoarr[$i])->first();
-                                                                if($active==''){
-                                                                    echo"<br>";
-                                                                }
-                                                                    else
-                                                                echo $active->mincap."<br>";
-                                                            }
-                                                        ?>
-                                                        </td>
-                                                        <td valign="middle">
-                                                            <?php for($i=0;$i<$dem;$i++){
-                                                            $active=$icoactive->where('icopool',$data->name)->where('ico',$icoarr[$i])->first();
-                                                            if($active==''){
-                                                                    echo"<br>";
-                                                                }
-                                                                    else
-                                                                echo $active->bonus."<br>";
-                                                            } ?>
-                                                        </td>
-                                                        <td valign="middle">
-                                                            <?php for($i=0;$i<$dem;$i++){
-                                                            $active=$icoactive->where('icopool',$data->name)->where('ico',$icoarr[$i])->first();
-                                                            if($active==''){
-                                                                    echo"<br>";
-                                                                }
-                                                                    else
-                                                                echo $active->comm."<br>";
-                                                            } ?>
-                                                        </td>
-                                                        <td valign="middle">
-                                                            <?php for($i=0;$i<$dem;$i++){
-                                                            $active=$icoactive->where('icopool',$data->name)->where('ico',$icoarr[$i])->first();
-                                                            if($active==''){
-                                                                    echo"<br>";
-                                                                }
-                                                                    else
-                                                                echo $active->raised."<br>";
-                                                            } ?>
-                                                        </td>
+                                                        
+                                                
                                                         <td valign="middle">{{$data->numofparticipants}}</td>
-                                                        <td valign="middle">{{$data->tok_distr}}</td>
-                                                        <td valign="middle">{{$data->rating}}</td>
+                                                        
                                                         <td valign="middle">{{$data->lang}}</td>
                                                         <td valign="middle">{{$data->access}}</td>
-                                                        <td valign="middle">{{$data->created}}</td>
-                                                        <td valign="middle"><a href="{{$data->addr}}" target="_blank"><i style="font-size: 150%;" class="flaticon2-paperplane"></i></a></td>
+                                                        
                                                         @if($data->score<5)
                                                         <td valign="middle " class="text-danger">{{$data->score}} </td>
                                                         @elseif($data->score<8&&$data->score>=5)

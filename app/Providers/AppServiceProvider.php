@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use App\logo;
 use App\link;
 use App\admin;
+use App\blog;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -31,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
         View::share('logo', $logo[0]->logo);
         View::share('link', link::all());
         View::share('mail', admin::find(1)->email);
+        View::share('linktwitter', blog::find(1)->link);
         Schema::defaultStringLength(254);
     }
 }
