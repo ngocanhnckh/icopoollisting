@@ -112,12 +112,11 @@ td {
                                             <table class="table table-bordered table-hover">
                                                 <thead>
                                                     <tr>
-                                                        <th>ICO Pool Name</th>
+                                                        <th>Group</th>
                                                         <th>Active Ico</th>
                                                         <th>Number Of Participants</th>
                                                         <th>Lang.</th>
                                                         <th>Access</th>
-                                                        <th>Score</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -149,13 +148,7 @@ td {
                                                         <td valign="middle">{{$data->lang}}</td>
                                                         <td valign="middle">{{$data->access}}</td>
                                                         
-                                                        @if($data->score<5)
-                                                        <td valign="middle " class="text-danger">{{$data->score}} </td>
-                                                        @elseif($data->score<8&&$data->score>=5)
-                                                            <td valign="middle" class="text-warning">{{$data->score}} </td>
-                                                            @else
-                                                            <td valign="middle" class="text-success">{{$data->score}} </td>
-                                                            @endif
+                                                       
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
@@ -174,19 +167,14 @@ td {
                                                 <thead>
                                                     <tr>
                                                         <th>ICO</th>
-                                                        <th>ICO Pools</th>
-                                                        <th>Min Cap</th>
-                                                        <th>Bonus</th>
-                                                        <th>Comm.</th>
-                                                        <th>Raised</th>
+                                                        <th>Group</th>
+                                                        
                                                         <th>Number Of Participants</th>
-                                                        <th>Tok. distr.</th>
-                                                        <th>Rating</th>
+                                                        
+                                                        
                                                         <th>Lang.</th>
                                                         <th>Access</th>
-                                                        <th>Created</th>
-                                                        <th>Addr.</th>
-                                                        <th>Score</th>
+                                                        
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -208,49 +196,7 @@ td {
 
                                                             ?>
                                                         </td>
-                                                        <td>
-                                                            <?php
-
-                                                            for($i=0;$i<$dem;$i++){
-                                                            $active=$icoactive->where('icopool',$poolarr[$i])->where('ico',$data->name)->first();
-                                                                if($active==''){
-                                                                    echo"<br>";
-                                                                }
-                                                                    else
-                                                                echo $active->mincap."<br>";
-                                                            }
-                                                        ?>
-                                                        </td>
-                                                        <td>
-                                                            <?php for($i=0;$i<$dem;$i++){
-                                                           $active=$icoactive->where('icopool',$poolarr[$i])->where('ico',$data->name)->first();
-                                                            if($active==''){
-                                                                    echo"<br>";
-                                                                }
-                                                                    else
-                                                                echo $active->bonus."<br>";
-                                                            } ?>
-                                                        </td>
-                                                        <td>
-                                                            <?php for($i=0;$i<$dem;$i++){
-                                                            $active=$icoactive->where('icopool',$poolarr[$i])->where('ico',$data->name)->first();
-                                                            if($active==''){
-                                                                    echo"<br>";
-                                                                }
-                                                                    else
-                                                                echo $active->comm."<br>";
-                                                            } ?>
-                                                        </td>
-                                                        <td>
-                                                            <?php for($i=0;$i<$dem;$i++){
-                                                            $active=$icoactive->where('icopool',$poolarr[$i])->where('ico',$data->name)->first();
-                                                            if($active==''){
-                                                                    echo"<br>";
-                                                                }
-                                                                    else
-                                                                echo $active->raised."<br>";
-                                                            } ?>
-                                                        </td>
+                                                        
                                                         <td>
                                                             <?php
                                                         for($i=0;$i<$dem;$i++){
@@ -269,15 +215,7 @@ td {
 
                                                         ?>
                                                         </td>
-                                                        <td>
-                                                            <?php
-                                                        for($i=0;$i<$dem;$i++){
-                                                            $pool1=$icopool->where('name',$poolarr[$i])->first();
-                                                            echo $pool1->rating."<br>";
-                                                        }
-
-                                                        ?>
-                                                        </td>
+                                                        
                                                         <td>
                                                             <?php
                                                         for($i=0;$i<$dem;$i++){
@@ -296,30 +234,7 @@ td {
 
                                                         ?>
                                                         </td>
-                                                        <td>
-                                                            <?php
-                                                        for($i=0;$i<$dem;$i++){
-                                                            $pool1=$icopool->where('name',$poolarr[$i])->first();
-                                                            echo $pool1->created."<br>";
-                                                        }
-
-                                                        ?>
-                                                        </td>
-                                                        <td>
-                                                            <?php
-                                                        for($i=0;$i<$dem;$i++){
-                                                            $pool1=$icopool->where('name',$poolarr[$i])->first();
-                                                            echo "<a href='".$pool1->addr."'target='_blank'><i style='font-size: 150%;' class='flaticon2-paperplane'></i></a><br>";
-                                                        }
-                                                        ?>
-                                                        </td>
-                                                        @if($data->average<5)
-                                                        <td valign="middle " class="text-danger">{{$data->average}} </td>
-                                                        @elseif($data->average<8&&$data->average>=5)
-                                                            <td valign="middle" class="text-warning">{{$data->average}} </td>
-                                                            @else
-                                                            <td valign="middle" class="text-success">{{$data->average}} </td>
-                                                            @endif
+                                                        
                                                     </tr>
                                                     @endforeach
                                                 </tbody>

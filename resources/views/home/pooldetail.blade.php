@@ -70,16 +70,12 @@ td {
                                         <tr>
                                             <th>Name</th>
                                             <th>Active ICO</th>
-                                            <th>Min Cap</th>
-                                            <th>Bonus</th>
-                                            <th>Comm.</th>
-                                            <th>Raised</th>
+                                            
                                             <th title="Number of Participants"><i class="flaticon2-user"></i></th>
-                                            <th>Tok. distr.</th>
-                                            <th>Rating</th>
+                                           
                                             <th>Language</th>
                                             <th>Access</th>
-                                            <th>Created</th>
+                                        
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -117,36 +113,11 @@ td {
                                                                 echo $active->mincap."<br>";
                                                             }
                                                         ?></td>
-                                                        <td valign="middle"><?php for($i=0;$i<$dem;$i++){
-                                                            $active=$icoactive->where('icopool',$data->name)->where('ico',$icoarr[$i])->first();
-                                                            if($active==''){
-                                                                    echo"<br>";
-                                                                }
-                                                                    else
-                                                                echo $active->bonus."<br>";
-                                                            } ?></td>
-                                                        <td valign="middle"><?php for($i=0;$i<$dem;$i++){
-                                                            $active=$icoactive->where('icopool',$data->name)->where('ico',$icoarr[$i])->first();
-                                                            if($active==''){
-                                                                    echo"<br>";
-                                                                }
-                                                                    else
-                                                                echo $active->comm."<br>";
-                                                            } ?></td>
-                                                        <td valign="middle"><?php for($i=0;$i<$dem;$i++){
-                                                            $active=$icoactive->where('icopool',$data->name)->where('ico',$icoarr[$i])->first();
-                                                            if($active==''){
-                                                                    echo"<br>";
-                                                                }
-                                                                    else
-                                                                echo $active->raised."<br>";
-                                                            } ?></td>
+                                                        
                                                         <td valign="middle">{{$data->numofparticipants}}</td>
-                                                        <td valign="middle">{{$data->tok_distr}}</td>
-                                                        <td valign="middle">{{$data->rating}}</td>
+                                                        
                                                         <td valign="middle">{{$data->lang}}</td>
                                                         <td valign="middle">{{$data->access}}</td>
-                                                        <td valign="middle">{{$data->created}}</td>
 
                                                     </tr>
 
