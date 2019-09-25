@@ -41,16 +41,6 @@ Route::get('/icopools-detail/{slug}',[
     'uses'=>'home@pooldetail',
     'as'=>'pooldetail'
 ]);
-//blog
-// Route::get('/bai-viet',[
-//     'uses'=>'home@blog',
-//     'as'=>'trangblog'
-// ]);
-
-// Route::get('/bai-viet/{slug}',[
-//     'uses'=>'home@baiviet',
-//     'as'=>'baiviet'
-// ]);
 //=====backend
 //logo
 Route::get('/dashboard/logo', ['uses'=>'dashboard@logo'])->name('logo');
@@ -169,30 +159,7 @@ Route::post('/dashboard/add-IcoPool/',[
     'uses'=>'dashboard@postaddicopool'
 ]);
 
-//ads
 
-// Route::get('/dashboard/ads',[
-//     'uses'=>'dashboard@ads',
-//     'as'=>'ads'
-// ]);
-// Route::get('/dashboard/add-ads/',[
-//     'uses'=>'dashboard@addads',
-//     'as'=>'addads'
-// ]);
-// Route::post('/dashboard/add-ads/',[
-//     'uses'=>'dashboard@postaddads'
-// ]);
-// Route::get('/dashboard/xoa-ads/{id}',[
-//     'uses'=>'dashboard@xoaads',
-//     'as'=>'xoaads'
-// ]);
-// Route::get('/dashboard/edit-ads/{id}',[
-//     'uses'=>'dashboard@editads',
-//     'as'=>'editads'
-// ]);
-// Route::post('/dashboard/edit-ads/{id}',[
-//     'uses'=>'dashboard@posteditads'
-// ]);
 //account
 Route::get('/dashboard/account',[
     'as'=>'acc',

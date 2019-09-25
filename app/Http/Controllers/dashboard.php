@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use App\admin;
 use App\ico;
 use App\icopool;
-use App\ads;
-use App\icoactive;
 use App\logo;
 use App\blog;
 use App\reqico;
@@ -16,12 +14,12 @@ use App\page;
 use App\link;
 class dashboard extends Controller
 {
-    public function deslugico($slug){
+    public function deslugico($slug){ //hàm dùng để chuyển slug thành name ico
         $ico=ico::all()->where('slug',$slug)->first();
         return $ico->name;
 
     }
-    public function deslugpool($slug){
+    public function deslugpool($slug){ // tương tự như trên nhưng là icopool
         $icopool=icopool::all()->where('slug',$slug)->first();
         return $icopool->name;
 
@@ -348,9 +346,8 @@ public function postlogo(Request $req){
         $admin=admin::all();
         $demico=ico::count();
         $demicopool=icopool::count();
-        $demads=ads::count();
         $trang='dashboard';
-        return view('dashboard.index',compact('admin','demico','demicopool','demads','trang'));
+        return view('dashboard.index',compact('admin','demico','demicopool','trang'));
     }
     public function logout(){
         Auth::logout();
@@ -359,14 +356,12 @@ public function postlogo(Request $req){
     public function login(){
         return view('dashboard.login.login');
     }
-    public function forgot(){
-        return view('dashboard.login.forgot');
-    }
+    
     public function profile(){
         $admin=admin::find(Auth::user()->id);
 
         $trang='profile';
-        return view('dashboard.profile',compact('admin','demico','demicopool','demads','trang'));
+        return view('dashboard.profile',compact('admin','demico','demicopool','trang'));
     }
     public function postProfile(Request $req){
 
@@ -464,11 +459,7 @@ public function postlogo(Request $req){
             return "Đã tồn tại ico này. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('ico')."'},3000);</script>";
             }
 
-        $icoactive=icoactive::all()->where('ico',$ico->name);
-        foreach($icoactive as $data){
-            $icoactive[$data->id-1]->ico=$req->name;
-            $icoactive[$data->id-1]->save();
-        }
+       
 
         $poolc=icopool::count();
         $icopool=icopool::all();
@@ -532,7 +523,7 @@ public function postlogo(Request $req){
         $trang='icopool';
         $icopool=icopool::all()->where('idngpost',Auth::user()->id);
         if(Auth::user()->id==1)$icopool=icopool::all();
-        $icoactive=icoactive::all();
+       
         $icopoolc=sizeof($icopool);
         $activearr=[];$dem=0;
         foreach($icopool as $data){
@@ -541,7 +532,7 @@ public function postlogo(Request $req){
             $dem++;
         }
         //dd($activearr);
-        return view('dashboard.icopool',compact('trang','admin','icopool','icoarr','activearr','dem','icoactive'));
+        return view('dashboard.icopool',compact('trang','admin','icopool','icoarr','activearr','dem'));
     }
     public function xoaicopool($id){
         if(Auth::check()==false){
@@ -587,12 +578,11 @@ public function postlogo(Request $req){
         $icopool->name=$req->name;
         $icopool->activeico=                $req->activeico;
         $icopool->numofparticipants=        $req->numofparticipants;
-        $icopool->tok_distr=                $req->tok_distr;
-        $icopool->rating=                   $req->rating;
+        
+        
         $icopool->lang=                     $req->lang;
         $icopool->access=                   $req->access;
-        $icopool->created=                  $req->created;
-        $icopool->addr=                     $req->addr;
+        
         $icopool->Description=              $req->description;
         $icopool->score=$req->score;
         $icopool->slug=$this->to_slug($req->name);
@@ -620,12 +610,10 @@ public function postlogo(Request $req){
         $icopool->name=                     $req->name;
         $icopool->activeico=                $req->activeico;
         $icopool->numofparticipants=        $req->numofparticipants;
-        $icopool->tok_distr=                $req->tok_distr;
-        $icopool->rating=                   $req->rating;
+       
         $icopool->lang=                     $req->lang;
         $icopool->access=                   $req->access;
-        $icopool->created=                  $req->created;
-        $icopool->addr=                     $req->addr;
+        
         $icopool->Description=              $req->description;
         $icopool->score=$req->score;
         $icopool->idngpost = Auth::user()->id;
@@ -633,97 +621,8 @@ public function postlogo(Request $req){
         $icopool->save();
         return redirect()->route('icopool');
     }
-    public function setico($slugpool,$slugico){
-        if(Auth::check()==false){
-            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
-        $ic=$this->deslugico($slugico);
-        $pool=$this->deslugpool($slugpool);
-        $ico=ico::all()->where('name',$ic)->first();
-        $icopool=icopool::all()->where('name',$pool)->first();
-        if(Auth::user()->id!=1&&$icopool->idngpost!=Auth::user()->id&&$ico->idngpost!=Auth::user()->id){
-            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
-        //check xem ico có active trong pool không
-
-        if (strlen(strstr($icopool->activeico, $ic)) > 0) {
-            $trang='d';
-            $admin=admin::all();
-            $icoactive=icoactive::all()->where('icopool',$pool)->where('ico',$ic);
-
-            if(count($icoactive)==0){
-                $icoactive->mincap='';
-                $icoactive->bonus='';
-                $icoactive->comm='';
-                $icoactive->raised='';
-            }
-            else{
-                $icoactive=$icoactive->first();
-            }
-            return view('dashboard.setico',compact('ic','pool','trang','admin','icoactive'));
-            // $icoactive=icoactive::all()->where('icopool',$pool)->where('ico',$ic);
-            // if(count($icoactive)==0){
-            //     $newicoac=new icoactive;
-            //     $newicoac->icopool=$pool;
-            //     $newicoac->ico=$ico;
-            // }
-        }
-        else{
-            return view('404');
-        }
-
-    }
-    public function postsetico(Request $req,$icopool,$ico){
-        if(Auth::check()==false){
-            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
-            $icoactive=icoactive::all()->where('icopool',$icopool)->where('ico',$ico);
-            $checkico=ico::all()->where('name',$ico)->first();
-            $checkicopool=icopool::all()->where('name',$icopool)->first();
-         if(Auth::user()->id!=1&&$checkicopool->idngpost!=Auth::user()->id&&$checkico->idngpost!=Auth::user()->id){
-            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
-            if(count($icoactive)==0){
-                $newicoac=new icoactive;
-                $newicoac->icopool=$icopool;
-                $newicoac->ico=$ico;
-                $newicoac->mincap=$req->mincap;
-                $newicoac->bonus=$req->bonus;
-                $newicoac->comm=$req->comm;
-                $newicoac->raised=$req->raised;
-                $newicoac->save();
-                return redirect()->route('icopool');
-            }
-            else{
-                $newicoac=icoactive::find($icoactive->first()->id);
-                $newicoac->icopool=$icopool;
-                $newicoac->ico=$ico;
-                $newicoac->mincap=$req->mincap;
-                $newicoac->bonus=$req->bonus;
-                $newicoac->comm=$req->comm;
-                $newicoac->raised=$req->raised;
-                $newicoac->save();
-                return redirect()->route('icopool');
-            }
-
-    }
-     public function ads(){
-        if(Auth::check()==false){
-            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
-        if(Auth::user()->id!=1){
-            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
-        $admin=admin::all();
-        $trang='ads';
-        $ads=ads::all();
-        if(Auth::user()->id!=1){
-
-            $ads=ads::all()->where('idngpost',Auth::user()->id);
-
-        }
-        return view('dashboard.ads',compact('trang','admin','ads'));
-    }
+    
+     
     public function addads(){
         if(Auth::check()==false){
             return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
@@ -743,27 +642,8 @@ public function postlogo(Request $req){
         if(Auth::user()->id!=1){
             return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
         }
+        $ads=ads::find(1);
         
-        $filenamewithextension = $req->file('img')->getClientOriginalName();
-
-        //get filename without extension
-        $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-
-        //get file extension
-        $extension = $req->file('img')->getClientOriginalExtension();
-
-        //filename to store
-        $filenametostore = $filename.'_'.time().'.'.$extension;
-        $req->file('img')->move(
-            'public/uploadads', //nơi cần lưu
-            $filenametostore //tên file
-        );
-        $ads=new ads;
-        $ads->name=$req->name;
-        $ads->nguoithue=$req->ngthue;
-        $ads->tenhinh=$filenametostore;
-        $ads->description=$req->description;
-        $ads->idngpost = Auth::user()->id;
         $ads->link=$req->link;
         $ads->save();
         return redirect()->route('ads');
@@ -784,59 +664,7 @@ public function postlogo(Request $req){
         $ads->delete();
         return redirect()->back();
     }
-    public function editads($id){
-        if(Auth::check()==false){
-            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
-        if(Auth::user()->id!=1){
-            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
-        $ico=ico::all();
-        $admin=admin::all();
-        $trang='addico';
-        $ads=ads::find($id);
-        return view('dashboard.editads',compact('trang','ico','admin','ads'));
-    }
-    public function posteditads(Request $req,$id){
-        if(Auth::check()==false){
-            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
-        if(Auth::user()->id!=1){
-            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
-        
-        if($req->img==null){
-            $ads=ads::find($id);
-            $ads->name=$req->name;
-            $ads->nguoithue=$req->ngthue;
-            $ads->description=$req->description;
-            $ads->link=$req->link;
-            $ads->save();
-            return redirect()->route('ads');
-        }
-        $filenamewithextension = $req->file('img')->getClientOriginalName();
-
-        //get filename without extension
-        $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-
-        //get file extension
-        $extension = $req->file('img')->getClientOriginalExtension();
-
-        //filename to store
-        $filenametostore = $filename.'_'.time().'.'.$extension;
-        $req->file('img')->move(
-            'public/uploadads', //nơi cần lưu
-            $filenametostore //tên file
-        );
-        $ads=ads::find($id);
-            $ads->name=$req->name;
-            $ads->nguoithue=$req->ngthue;
-            $ads->tenhinh=$filenametostore;
-            $ads->description=$req->description;
-            $ads->link=$req->link;
-            $ads->save();
-            return redirect()->route('ads');
-    }
+    
     public function blog(){
         if(Auth::check()==false){
             return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
@@ -850,19 +678,7 @@ public function postlogo(Request $req){
         $blog=blog::all();
         return view('dashboard.blog',compact('trang','admin','blog'));
     }
-    public function addblog(){
-        if(Auth::check()==false){
-            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
-        if(Auth::user()->id!=1){
-            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
-        
-        $trang='xx';
-        $admin=admin::all();
-        $blog=blog::all();
-        return view('dashboard.addblog',compact('trang','admin','blog'));
-    }
+    
     public function postaddblog(Request $req){
         if(Auth::check()==false){
             return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
@@ -876,66 +692,5 @@ public function postlogo(Request $req){
         $blog->save();
         return redirect()->route('blog');
     }
-    public function xoablog($id){
-        if(Auth::check()==false){
-            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
-        if(Auth::user()->id!=1){
-            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
-        
-        $blog=blog::find($id);
-        $blog->delete();
-        return redirect()->back();
-    }
-    public function editblog($id){
-       if(Auth::check()==false){
-            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
-         if(Auth::user()->id!=1){
-            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
-        
-        $trang='xx';
-        $admin=admin::all();
-        $blog=blog::find($id);
-        return view('dashboard.editblog',compact('trang','admin','blog'));
-    }
-    public function posteditblog(Request $req,$id){
-        if(Auth::check()==false){
-            return "Chưa Login. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
-        if(Auth::user()->id!=1){
-            return "Không có quyền truy cập. Bạn sẽ được chuyển hướng sau 3s<script>setTimeout(function(){window.location='".route('dashboard')."'},3000);</script>";
-        }
-        
-
-        $blog=blog::find($id);
-        $blog->slug=($this->to_slug($req->title)).time();
-        //dd($req->short);
-        $blog->motangan=$req->short;
-        $blog->title=$req->title;
-        $blog->tag=$req->tag;
-        $blog->content=$req->content;
-if($req->img!=null){
-            $filenamewithextension = $req->file('img')->getClientOriginalName();
-
-            //get filename without extension
-            $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-
-            //get file extension
-            $extension = $req->file('img')->getClientOriginalExtension();
-
-            //filename to store
-            $filenametostore = $filename.'_'.time().'.'.$extension;
-            $req->file('img')->move(
-                'public/thumbnailblog', //nơi cần lưu
-                $filenametostore //tên file
-            );
-            $blog->img= $filenametostore;
-        }
-        $blog->img=$blog->img;
-        $blog->save();
-        return redirect()->route('blog');
-    }
+   
 }

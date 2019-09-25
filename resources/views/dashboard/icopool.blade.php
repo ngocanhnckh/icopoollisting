@@ -36,12 +36,8 @@
                                 <th>ICO Pool Name</th>
                                 <th>Active Ico</th>
                                 <th>Number Of Participants</th>
-                                <th>Tok. distr.</th>
-                                <th>Rating</th>
                                 <th>Lang.</th>
                                 <th>Access</th>
-                                <th>Created</th>
-                                <th>Addr.</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -50,24 +46,18 @@
                             <tr>
                                 <th scope="row" onpageshow="alert(1);">{{$data->id}}</th>
                                 <td>{{$data->name}}</td>
-                                <td><?php
+                                <td><?php //Cắt chuỗi và xuất ico trong pool ra
                                     $i=$data->id-1;
                                     $str=$activearr[$i].',';$mid='';
                                     for($j=0;$j<strlen($str);$j++){
                                         if($str[$j]==','){
-                                            $check=$icoactive->where('ico',$mid)->where('icopool',$data->name)->first();
-                                            if($check==''){
+                                           
+                                            
                                                 if($j!=strlen($str)-1){
-                                                    echo "<a title='You not set Min Cap, Bonus, ...' href='".route('setico', ['icopool'=>to_slug($data->name), 'ico'=>to_slug($mid)])."' class='text-danger'>$mid<i class='flaticon-warning-sign'></i>, </a>";
+                                                    echo "$mid, ";
                                                 }
-                                                else echo "<a title='You not set Min Cap, Bonus, ...' href='".route('setico', ['icopool'=>to_slug($data->name), 'ico'=>to_slug($mid)])."' class='text-danger'>$mid<i class='flaticon-warning-sign'></i></a>";
-                                            }
-                                            else{
-                                                if($j!=strlen($str)-1){
-                                                    echo "<a href='".route('setico', ['icopool'=>to_slug($data->name), 'ico'=>to_slug($mid)])."' >$mid, </a>";
-                                                }
-                                                else echo "<a href='".route('setico', ['icopool'=>to_slug($data->name), 'ico'=>to_slug($mid)])."'>$mid</a>";
-                                            }
+                                                else echo "$mid";
+                                            
                                             $mid='';
                                         }
                                         else if($str[$j]==' '&&$str[$j-1]==','){continue;}
@@ -78,12 +68,10 @@
 
                                 ?></td>
                                 <td>{{$data->numofparticipants}}</td>
-                                <td>{{$data->tok_distr}}</td>
-                                <td>{{$data->rating}}</td>
+                                
                                 <td>{{$data->lang}}</td>
                                 <td>{{$data->access}}</td>
-                                <td>{{$data->created}}</td>
-                                <td>{{$data->addr}}</td>
+                                
                                 <td>
                                     <button onclick="window.location='{{route('editicopool',$data->id)}}'"  type="button" class="btn btn-brand btn-elevate btn-pill">
                                         <i class="flaticon-edit"></i>
@@ -105,7 +93,6 @@
                             @endforeach
 
                         </tbody>
-<span class="text-muted">Click Active ICO to set Min cap, Bonus, Comm.</span>
                     </table>
                 </div>
             </div>

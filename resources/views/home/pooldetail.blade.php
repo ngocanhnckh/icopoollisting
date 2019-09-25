@@ -102,17 +102,6 @@ td {
                                                             }
                                                             ?>
                                                         </td>
-                                                        <td valign="middle"><?php
-
-                                                            for($i=0;$i<$dem;$i++){
-                                                                $active=$icoactive->where('icopool',$data->name)->where('ico',$icoarr[$i])->first();
-                                                                if($active==''){
-                                                                    echo"<br>";
-                                                                }
-                                                                    else
-                                                                echo $active->mincap."<br>";
-                                                            }
-                                                        ?></td>
                                                         
                                                         <td valign="middle">{{$data->numofparticipants}}</td>
                                                         

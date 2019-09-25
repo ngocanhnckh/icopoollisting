@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use App\admin;
 use App\ico;
 use App\icopool;
-use App\ads;
-use App\icoactive;
 use App\blog;
 use App\reqico;
 use App\reqpool;
@@ -59,7 +57,6 @@ class home extends Controller
         $title='Home';
         $icopool=icopool::orderBy('score','DESC')->get();
         $check=icopool::all();
-        $icoactive=icoactive::all();
         $ico=ico::orderBy('average','DESC')->get();
         $activearr=[];$dem=0;
         foreach($check as $data){
@@ -72,15 +69,13 @@ class home extends Controller
         $admin->view=$admin->view+1;
         $admin->save();
         //dd($activearr);
-        $ads=ads::all();
         $linktwitter=blog::find(1)->link;
-        return view('home.index',compact('title','icopool','activearr','icoactive','ico','ana','ads','linktwitter'));
+        return view('home.index',compact('title','icopool','activearr','ico','ana','linktwitter'));
     }
     public function icodetail($slug){
         $title='Ico Detail';
         $icopool=icopool::all();
         $check=icopool::all();
-        $icoactive=icoactive::all();
 
 
         $activearr=[];$dem=0;
@@ -95,13 +90,12 @@ class home extends Controller
         $admin->save();
         $data=ico::all()->where('slug',$slug)->first();
 
-        return view('home.icodetail',compact('title','icopool','activearr','icoactive','ico','ana','data'));
+        return view('home.icodetail',compact('title','icopool','activearr','ico','ana','data'));
     }
     public function pooldetail($slug){
         $title='Icopools Detail';
         $icopool=icopool::all();
         $check=icopool::all();
-        $icoactive=icoactive::all();
 
 
         $activearr=[];$dem=0;
@@ -116,7 +110,7 @@ class home extends Controller
         $admin->save();
         $data=icopool::all()->where('slug',$slug)->first();
 
-        return view('home.pooldetail',compact('title','icopool','activearr','icoactive','ico','ana','data'));
+        return view('home.pooldetail',compact('title','icopool','activearr','ico','ana','data'));
     }
     public function blog(){
         $admin=admin::find(1);

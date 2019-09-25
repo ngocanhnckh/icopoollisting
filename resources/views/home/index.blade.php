@@ -52,36 +52,7 @@ td {
     <!-- begin:: Content -->
     <div class="container no-padding">
         <div class="row">
-            <!-- <div class="col-md-2">
-                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <?php $dem=0; ?>
-    @foreach($ads as $data)
-    <li data-target="#carouselExampleIndicators @if($dem==0) active  @endif" data-slide-to="{{$dem}}" ></li>
-    <?php $dem++; ?>
-@endforeach
-  </ol>
-  <div class="carousel-inner">
-    <?php $dem=0;?>
-    @foreach($ads as $data)
-    <div class="carousel-item @if($dem==0) active  @endif">
-      <a href="{{$data->link}}" target="_blank"><img class="d-block w-100" src="{{asset('public/uploadads')}}/{{$data->tenhinh}}" ></a>
-    </div>
-    <?php $dem++; ?>
-    @endforeach
-
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-
-            </div> -->
+            
             <div class="col-md-12">
                 <div class="kt-portlet">
                     <div class="kt-portlet__head">
@@ -206,15 +177,7 @@ td {
 
                                                         ?>
                                                         </td>
-                                                        <td>
-                                                            <?php
-                                                        for($i=0;$i<$dem;$i++){
-                                                            $pool1=$icopool->where('name',$poolarr[$i])->first();
-                                                            echo $pool1->tok_distr."<br>";
-                                                        }
-
-                                                        ?>
-                                                        </td>
+                                                        
                                                         
                                                         <td>
                                                             <?php
@@ -282,36 +245,7 @@ td {
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-md-2">
-                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <?php $dem=0; ?>
-    @foreach($ads as $data)
-    <li data-target="#carouselExampleIndicators @if($dem==0) active  @endif" data-slide-to="{{$dem}}" ></li>
-    <?php $dem++; ?>
-@endforeach
-  </ol>
-  <div class="carousel-inner">
-    <?php $dem=0;?>
-    @foreach($ads as $data)
-    <div class="carousel-item @if($dem==0) active  @endif">
-      <a href="{{$data->link}}" target="_blank"><img class="d-block w-100" src="{{asset('public/uploadads')}}/{{$data->tenhinh}}" ></a>
-    </div>
-    <?php $dem++; ?>
-    @endforeach
-
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-            </div>
-        </div> -->
+            
     </div>
     <!-- end:: Content -->
 </div>
